@@ -16,7 +16,7 @@ export default function HowItWorks() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Cracking X's Code</h2>
         <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <div key={step.title} className="flex flex-col items-center text-center">
               <div className="bg-blue-100 p-4 rounded-full mb-4">
                 <step.icon className="h-8 w-8 text-blue-600" />

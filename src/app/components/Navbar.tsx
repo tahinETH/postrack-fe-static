@@ -9,8 +9,6 @@ import { Menu} from "lucide-react"
 
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex items-center justify-between p-4" aria-label="Global">
@@ -25,7 +23,6 @@ export default function Navbar() {
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
@@ -54,7 +51,6 @@ export default function Navbar() {
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
                 <X className="h-6 w-6" aria-hidden="true" />
@@ -73,7 +69,6 @@ export default function Navbar() {
                               key={dropdownItem.name}
                               href={dropdownItem.href}
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                              onClick={() => setMobileMenuOpen(false)}
                             >
                               {dropdownItem.name}
                             </Link>
@@ -83,7 +78,6 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          onClick={() => setMobileMenuOpen(false)}
                         >
                           {item.name}
                         </Link>
@@ -93,7 +87,7 @@ export default function Navbar() {
                 </div>
                 <div className="py-6">
                   <Button asChild className="w-full">
-                    <Link href="https://app.postrack.co" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="https://app.postrack.co">
                       Try for free
                     </Link>
                   </Button>

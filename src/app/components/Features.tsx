@@ -93,13 +93,14 @@ export default function StickyFeatureScroll() {
     }
 
     const observer = new IntersectionObserver(observerCallback, options)
+    const currentRefs = sectionRefs.current
 
-    sectionRefs.current.forEach((section) => {
+    currentRefs.forEach((section) => {
       if (section) observer.observe(section)
     })
 
     return () => {
-      sectionRefs.current.forEach((section) => {
+      currentRefs.forEach((section) => {
         if (section) observer.unobserve(section)
       })
     }
