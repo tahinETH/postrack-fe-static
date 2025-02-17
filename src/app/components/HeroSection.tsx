@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-
+import Image from "next/image"
 export default function HeroSection() {
   return (
     <section className="py-20 bg-gradient-to-b from-purple-50 via-pink-50 to-white text-center">
@@ -25,7 +25,7 @@ export default function HeroSection() {
           </Button>
         </div>
         <div className="mt-16">
-          <img
+          <Image
             src="/example.jpeg"
             alt="Postrack Dashboard Preview"
             className="rounded-lg shadow-2xl mx-auto"

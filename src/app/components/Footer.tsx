@@ -1,7 +1,7 @@
 "use client"
 
-import { Separator } from "@/components/ui/separator"
-import { Twitter, Facebook, Instagram, GitlabIcon as GitHub, Mail, MessageSquare } from "lucide-react"
+
+import {  Mail, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function FooterSection() {

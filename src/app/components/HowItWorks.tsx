@@ -1,6 +1,5 @@
 "use client"
 
-import { Separator } from "@/components/ui/separator"
 import { Link2, Clock, Users, Brain } from "lucide-react"
 
 export default function HowItWorks() {
