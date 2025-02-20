@@ -19,8 +19,8 @@ const features = [
   },
   {
     icon: Users,
-    title: "Who Jumpstarted Your Virality?",
-    desc: "Identify which early engagers have followers that actually respond. No more guessing if a repost from @User123 matters.",
+    title: "Who Jumpstarted Virality?",
+    desc: "Identify which early engagers have followers that actually respond. No more guessing if a repost from @somerandomdude matters.",
     details: [
       "Sort amplifiers by follower activity rate",
       "Filter by verified status and niche authority",
@@ -61,8 +61,8 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Simple Setup",
-    desc: "Connect your account in seconds with a user-friendly interface.",
+    title: "10-Second Setup",
+    desc: "Paste in an X handle and we'll get you set up in seconds.",
     details: [
       "No coding or complex OAuth steps required",
       "Automatic data fetching after initial hookup",
@@ -154,7 +154,7 @@ export default function StickyFeatureScroll() {
                 sectionRefs.current[i] = el
               }
             }}
-            className="h-screen"
+            className={`${i < features.length - 1 ? 'h-screen' : ''}`}
           />
         ))}
       </div>

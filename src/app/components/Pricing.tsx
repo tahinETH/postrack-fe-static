@@ -3,31 +3,25 @@ import { Button } from "@/components/ui/button"
 
 const tiers = [
   {
-    name: "Starter",
-    price: "$0",
-    description: "For individuals just getting started with post analytics.",
-    features: ["Track 1 post per day", "Basic first-hour metrics", "Public post analysis", "7-day data retention"],
-    cta: "Start for Free",
-    mostPopular: false,
-  },
-  {
-    name: "Pro",
-    price: "$29",
+    name: "Hobby",
+    price: "$49",
     description: "For creators serious about optimizing their content strategy.",
     features: [
-      "Track unlimited posts",
+      "Track 1 account",
+      "Max 5000 followers",
       "Real-time first-hour analytics",
+      "Automated post tracking",
       "AI-powered insights",
       "Competitor analysis",
       "30-day data retention",
       "Email alerts",
     ],
-    cta: "Start 14-Day Free Trial",
+    cta: "Start 7-Day Free Trial",
     mostPopular: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom",
+    name: "Locked In",
+    price: "$99",
     description: "For teams and agencies managing multiple accounts.",
     features: [
       "All Pro features",
@@ -37,7 +31,7 @@ const tiers = [
       "90-day data retention",
       "Custom integrations",
     ],
-    cta: "Contact Sales",
+    cta: "Subscribe",
     mostPopular: false,
   },
 ]

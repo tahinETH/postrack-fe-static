@@ -13,7 +13,7 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="group bg-tertiary text-white hover:bg-tertiary">
               <a href="https://app.postrack.co">
-                Start My 14-Day Virality Audit
+                Start My 7-Day Virality Audit
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>

@@ -71,7 +71,7 @@ export default function FooterSection() {
         <div className="flex flex-col items-center gap-6 mb-8">
           <div className="flex items-center gap-2 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors">
             <Mail className="h-5 w-5" />
-            <a href="mailto:support@postrack.co">support@postrack.co</a>
+            <a href="mailto:info@postrack.co">info@postrack.co</a>
           </div>
           
           <Button 
