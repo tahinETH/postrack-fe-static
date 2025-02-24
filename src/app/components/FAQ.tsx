@@ -75,7 +75,7 @@ export default function FAQSection() {
   ]
 
   return (
-    <section className="py-16 bg-muted/10" id="faq">
+    <section className="py-16 " id="faq">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl mb-8 text-center">Frequently Asked Questions</h2>
         <div className="max-w-3xl mx-auto">

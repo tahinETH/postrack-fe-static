@@ -5,9 +5,9 @@ import { Link2, Clock, Users, Brain } from "lucide-react"
 export default function HowItWorks() {
   const steps = [
     { icon: Link2, title: "Submit Any Account or Post", description: "Type in an X Handle or paste a link to an individual post." },
-    { icon: Clock, title: "Track the Golden Hour", description: "We monitor your post every 5 minutes during the first critical hour, capturing exactly how early engagement triggers X's algorithm." },
-    { icon: Brain, title: "Sustained Growth", description: "First-hour data tells you how to hack the algorithm. Post-first-hour trends show you how to keep momentum. Get weekly reports comparing early spikes to long-term engagement decay rates." },
-    { icon: Users, title: "Map the Virality Path", description: "See which early reposts/likes came from verified accounts, influencers, or niche communities—the amplifiers that actually move the needle." }
+    { icon: Clock, title: "Track the Golden Hour", description: "We monitor posts every 5 minutes during the first critical hour, capturing exactly how early engagement triggers X's algorithm." },
+    { icon: Brain, title: "Sustained Growth", description: "First-hour data tells you how to hack the algorithm. Post-first-hour trends show you how to keep momentum." },
+    { icon: Users, title: "Map the Virality Path", description: "See which posts did well, which early reposts/likes came from verified accounts, influencers, or niche communities—the amplifiers that actually move the needle." }
     
   ]
 

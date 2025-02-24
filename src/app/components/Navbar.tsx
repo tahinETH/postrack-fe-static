@@ -27,7 +27,10 @@ export default function Navbar() {
           </Link>
         </div>
         
-        <div className="justify-end">
+        <div className="flex items-center gap-4">
+          <Link href="/plans" className="text-gray-700 hover:text-gray-900">
+            Plans
+          </Link>
           <Button asChild className="bg-blue-600 text-white hover:bg-blue-700">
             <Link href="https://app.postrack.co">Go To App</Link>
           </Button>
@@ -38,4 +41,3 @@ export default function Navbar() {
     </header>
   )
 }
-

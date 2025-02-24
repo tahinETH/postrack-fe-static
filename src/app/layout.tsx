@@ -20,7 +20,7 @@ export default function RootLayout({
         {/* <Script src="https://unpkg.com/react-scan/dist/auto.global.js" /> */}
         <Script async src="https://tally.so/widgets/embed.js"></Script>
       </head>
-      <body className="bg-white text-gray-900">
+      <body className="bg-white text-gray-900 ">
         {children}
       </body>
     </html>
