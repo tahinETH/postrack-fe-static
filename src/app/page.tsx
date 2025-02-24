@@ -18,8 +18,11 @@ export default function HomePage() {
         Each section is a simple, static React server component 
         with minimal or no additional client-side code. 
       */}
+      
+      <div className="bg-gradient-to-b from-purple-50 via-pink-50 to-white">
       <Navbar />
       <HeroSection />
+      </div>
       <HowItWorks />
       <Features />
       <CTASection />

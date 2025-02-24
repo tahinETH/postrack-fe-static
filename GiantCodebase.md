@@ -106,13 +106,14 @@ module.exports = {
 
 ## ./next.config.ts
 ```
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig
 ```
 
 ## ./src/app/components/Navbar.tsx
@@ -121,16 +122,13 @@ export default nextConfig;
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu} from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+
 
 
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex items-center justify-between p-4" aria-label="Global">
@@ -145,7 +143,6 @@ export default function Navbar() {
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
@@ -174,7 +171,6 @@ export default function Navbar() {
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
                 <X className="h-6 w-6" aria-hidden="true" />
@@ -193,7 +189,6 @@ export default function Navbar() {
                               key={dropdownItem.name}
                               href={dropdownItem.href}
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                              onClick={() => setMobileMenuOpen(false)}
                             >
                               {dropdownItem.name}
                             </Link>
@@ -203,7 +198,6 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          onClick={() => setMobileMenuOpen(false)}
                         >
                           {item.name}
                         </Link>
@@ -213,7 +207,7 @@ export default function Navbar() {
                 </div>
                 <div className="py-6">
                   <Button asChild className="w-full">
-                    <Link href="https://app.postrack.co" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="https://app.postrack.co">
                       Try for free
                     </Link>
                   </Button>
@@ -247,7 +241,7 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="group bg-tertiary text-white hover:bg-tertiary">
               <a href="https://app.postrack.co">
-                Start My 14-Day Virality Audit
+                Start My 7-Day Virality Audit
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
@@ -261,6 +255,95 @@ export default function CTASection() {
             </Button>
           </div>
           <p className="mt-6 text-sm opacity-75">14-day audit. No credit card required.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+```
+
+## ./src/app/components/Pricing.tsx
+```
+import { Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
+
+const tiers = [
+  {
+    name: "Hobby",
+    price: "$49",
+    description: "For creators serious about optimizing their content strategy.",
+    features: [
+      "Track 1 account",
+      "Max 5000 followers",
+      "Real-time first-hour analytics",
+      "Automated post tracking",
+      "AI-powered insights",
+      "Competitor analysis",
+      "30-day data retention",
+      "Email alerts",
+    ],
+    cta: "Subscribe",
+    mostPopular: true,
+  },
+  {
+    name: "Locked In",
+    price: "$99",
+    description: "For teams and agencies managing multiple accounts.",
+    features: [
+      "All Pro features",
+      "Unlimited account tracking",
+      "API access",
+      "Dedicated support",
+      "90-day data retention",
+      "Custom integrations",
+    ],
+    cta: "Subscribe",
+    mostPopular: false,
+  },
+]
+
+export default function PricingSection() {
+  return (
+    <section id="pricing" className="py-20 bg-gradient-radial">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
+          <p className="text-xl text-muted-foreground">
+            Choose the plan that's right for you and start optimizing your content strategy today.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {tiers.map((tier) => (
+            <div
+              key={tier.name}
+              className={`flex flex-col p-8 rounded-lg shadow-lg ${
+                tier.mostPopular ? "bg-tertiary text-white ring-2 ring-tertiary" : "bg-card text-card-foreground"
+              }`}
+            >
+              <h3 className="text-2xl font-bold mb-4">{tier.name}</h3>
+              <div className="text-4xl font-bold mb-6">{tier.price}</div>
+              <p className="text-sm mb-6">{tier.description}</p>
+              <ul className="mb-8 flex-grow">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex items-center mb-3">
+                    <Check className="h-5 w-5 mr-2 flex-shrink-0" />
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                size="lg"
+                className={`w-full ${
+                  tier.mostPopular
+                    ? "bg-white text-tertiary hover:bg-gray-100"
+                    : "bg-tertiary text-white hover:bg-tertiary/90"
+                }`}
+              >
+                {tier.cta}
+              </Button>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -292,8 +375,8 @@ const features = [
   },
   {
     icon: Users,
-    title: "Who Jumpstarted Your Virality?",
-    desc: "Identify which early engagers have followers that actually respond. No more guessing if a repost from @User123 matters.",
+    title: "Who Jumpstarted Virality?",
+    desc: "Identify which early engagers have followers that actually respond. No more guessing if a repost from @somerandomdude matters.",
     details: [
       "Sort amplifiers by follower activity rate",
       "Filter by verified status and niche authority",
@@ -334,8 +417,8 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Simple Setup",
-    desc: "Connect your account in seconds with a user-friendly interface.",
+    title: "10-Second Setup",
+    desc: "Paste in an X handle and we'll get you set up in seconds.",
     details: [
       "No coding or complex OAuth steps required",
       "Automatic data fetching after initial hookup",
@@ -366,13 +449,14 @@ export default function StickyFeatureScroll() {
     }
 
     const observer = new IntersectionObserver(observerCallback, options)
+    const currentRefs = sectionRefs.current
 
-    sectionRefs.current.forEach((section) => {
+    currentRefs.forEach((section) => {
       if (section) observer.observe(section)
     })
 
     return () => {
-      sectionRefs.current.forEach((section) => {
+      currentRefs.forEach((section) => {
         if (section) observer.unobserve(section)
       })
     }
@@ -426,7 +510,7 @@ export default function StickyFeatureScroll() {
                 sectionRefs.current[i] = el
               }
             }}
-            className="h-screen"
+            className={`${i < features.length - 1 ? 'h-screen' : ''}`}
           />
         ))}
       </div>
@@ -440,7 +524,6 @@ export default function StickyFeatureScroll() {
 ```
 "use client"
 
-import { Separator } from "@/components/ui/separator"
 import { Link2, Clock, Users, Brain } from "lucide-react"
 
 export default function HowItWorks() {
@@ -457,7 +540,7 @@ export default function HowItWorks() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Cracking X's Code</h2>
         <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <div key={step.title} className="flex flex-col items-center text-center">
               <div className="bg-blue-100 p-4 rounded-full mb-4">
                 <step.icon className="h-8 w-8 text-blue-600" />
@@ -478,8 +561,8 @@ export default function HowItWorks() {
 ```
 "use client"
 
-import { Separator } from "@/components/ui/separator"
-import { Twitter, Facebook, Instagram, GitlabIcon as GitHub, Mail, MessageSquare } from "lucide-react"
+
+import {  Mail, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function FooterSection() {
@@ -549,7 +632,7 @@ export default function FooterSection() {
         <div className="flex flex-col items-center gap-6 mb-8">
           <div className="flex items-center gap-2 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors">
             <Mail className="h-5 w-5" />
-            <a href="mailto:support@postrack.co">support@postrack.co</a>
+            <a href="mailto:info@postrack.co">info@postrack.co</a>
           </div>
           
           <Button 
@@ -575,7 +658,7 @@ export default function FooterSection() {
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-
+import Image from "next/image"
 export default function HeroSection() {
   return (
     <section className="py-20 bg-gradient-to-b from-purple-50 via-pink-50 to-white text-center">
@@ -594,11 +677,11 @@ export default function HeroSection() {
             </a>
           </Button>
           <Button asChild size="lg" variant="outline" className="bg-white hover:bg-gray-50">
-            <a href="#how-it-works">See An Example</a>
+            <a href="#how-it-works">See In Action</a>
           </Button>
         </div>
         <div className="mt-16">
-          <img
+          <Image
             src="/example.jpeg"
             alt="Postrack Dashboard Preview"
             className="rounded-lg shadow-2xl mx-auto"
@@ -739,8 +822,6 @@ export default function RootLayout({
       <head>
         <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         <Script async src="https://tally.so/widgets/embed.js"></Script>
-
-
       </head>
       <body className="bg-white text-gray-900">
         {children}
@@ -760,7 +841,7 @@ import Features from "./components/Features"
 import CTASection from "./components/CTASection"
 import FAQSection from "./components/FAQ"
 import Footer from "./components/Footer"
-
+import Pricing from "./components/Pricing"
 // Force static rendering for maximum speed.
 export const dynamic = "force-static"
 // (You can also do: export const revalidate = 86400; to re-gen once/day.)
@@ -778,6 +859,7 @@ export default function HomePage() {
       <Features />
       <CTASection />
       <FAQSection />
+      <Pricing />
       <Footer />
     </main>
   )
