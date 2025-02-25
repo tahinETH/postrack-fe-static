@@ -121,6 +121,11 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         <Script async src="https://tally.so/widgets/embed.js"></Script>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <meta name="theme-color" content="#475ded" />
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {/* Skip to content link for keyboard accessibility */}

@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import LazyVideo from "./LazyVideo"
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -110,25 +111,21 @@ export default function HeroSection() {
             className="mt-16 lg:mt-0"
             variants={item}
           >
-            <div className="relative group">
+            <div className="relative group hover:scale-[102%] transition-all duration-300">
               <Link href="https://app.postrack.co/example">
-                {/* Image frame effects */}
+                {/* Video frame effects */}
                 <div 
-                  className="absolute -inset-0.5 bg-gradient-to-r from-tertiary to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" 
+                  className="absolute -inset-0.5 bg-gradient-to-r from-tertiary to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 " 
                   aria-hidden="true"
                 />
                 
-                <Image
-                  src="/example.png"
-                  alt="Postrack Dashboard showing X analytics data"
-                  className="rounded-lg shadow-2xl mx-auto transition-all duration-300 group-hover:-translate-y-1 relative"
-                  width={800}
-                  height={800}
-                  priority
+                <LazyVideo 
+                  src="/example.mp4" 
+                  activeIndex={0} 
                 />
               </Link>
               
-              {/* Caption for the image */}
+              {/* Caption for the video */}
               <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
                 <p className="text-xs text-gray-700">Live dashboard preview</p>
               </div>
