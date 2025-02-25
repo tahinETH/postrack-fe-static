@@ -116,409 +116,502 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
+## ./src/app/plans/page.tsx
+```
+import Pricing from "../components/Pricing"
+import Navbar from "../components/Navbar"
+export default function PricingPage() {
+    return (
+        <div>
+            <Navbar />
+            <Pricing />
+        </div>
+    )
+}
+```
+
 ## ./src/app/components/Navbar.tsx
 ```
 "use client"
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu} from "lucide-react"
-
-
-
-
+import { Menu } from "lucide-react"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto flex items-center justify-between p-4" aria-label="Global">
+    <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm">
+      <nav 
+        className="container mx-auto flex items-center justify-between p-4 bg-transparent" 
+        aria-label="Main Navigation"
+      >
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Postrack</span>
-            
-            <div className="text-2xl font-bold text-blue-600">Postrack</div>
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 group" aria-label="Postrack Home">
+            <motion.div 
+              whileHover={{ rotate: 15 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Image
+                src="/favicon.ico"
+                alt=""
+                width={24}
+                height={24}
+                className="transition-transform group-hover:scale-110"
+              />
+            </motion.div>
+            <div className="text-xl font-normal mt-1">Postrack</div>
           </Link>
         </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+        
+        <div className="flex items-center gap-4">
+          <Link 
+            href="/plans" 
+            className="text-gray-700 hover:text-gray-900 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-offset-2 rounded-sm"
+            aria-label="View pricing plans"
           >
-            <span className="sr-only">Open main menu</span>
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="hidden lg:flex lg:gap-x-8">
-         
-        </div>
-       {/*  <div className="justify-end">
-          <Button asChild className="bg-blue-600 text-white hover:bg-blue-700">
-            <Link href="https://app.postrack.co">Go To App</Link>
+            Plans
+          </Link>
+          <Button 
+            asChild 
+            className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+          >
+            <Link href="https://app.postrack.co" aria-label="Navigate to application">Go To App</Link>
           </Button>
-        </div> */}
-      </nav>
-      {/* Mobile menu */}
-      {/*mobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Postrack</span>
-                
-                <div className="text-2xl font-bold text-blue-600">Postrack</div>
-              </Link>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Close menu</span>
-                <X className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navItems.map((item) => (
-                    <React.Fragment key={item.name}>
-                      {item.dropdownItems ? (
-                        <>
-                          <div className="font-semibold leading-6 text-gray-900">{item.name}</div>
-                          {item.dropdownItems.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.name}
-                              href={dropdownItem.href}
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                            >
-                              {dropdownItem.name}
-                            </Link>
-                          ))}
-                        </>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                        >
-                          {item.name}
-                        </Link>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <Button asChild className="w-full">
-                    <Link href="https://app.postrack.co">
-                      Try for free
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      )*/}
-      
+      </nav>
     </header>
   )
-}
-
-```
+}```
 
 ## ./src/app/components/CTASection.tsx
 ```
+"use client"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 
 export default function CTASection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 })
+  
+  const variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        delay: 0.2
+      }
+    }
+  }
+
   return (
-    <section className="py-20 bg-gradient-to-r from-secondary to-tertiary/60 text-foreground">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6 text-tertiary">Stop Publishing Blindly. Start Engineering Virality.</h2>
-          <p className="text-xl mb-8 opacity-90">
-          Postrack gives you the tools to dominate X’s golden hour and exploit long-tail engagement. Stop leaving virality to chance.
+    <section 
+      className="py-20 relative overflow-hidden"
+      aria-labelledby="cta-heading"
+      ref={containerRef}
+    >
+      {/* Enhanced background with gradient overlay */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-tertiary/10"
+        aria-hidden="true"
+      ></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <div className="absolute top-0 left-0 w-56 h-56 bg-tertiary/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-600/5 rounded-full blur-3xl transform translate-x-1/3 translate-y-1/3"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={variants}
+        >
+          <h2 
+            id="cta-heading" 
+            className="text-3xl md:text-4xl font-bold mb-6 text-tertiary"
+          >
+            Stop Publishing Blindly. Start Engineering Virality.
+          </h2>
+          
+          <p className="text-lg mb-8 opacity-90 text-gray-700">
+            Postrack gives you the tools to dominate X's golden hour and exploit long-tail engagement. Stop leaving virality to chance.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="group bg-tertiary text-white hover:bg-tertiary">
-              <a href="https://app.postrack.co">
-                Start My 7-Day Virality Audit
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button 
+              size="lg" 
+              asChild 
+              className="group relative overflow-hidden bg-tertiary text-white hover:bg-tertiary shadow-lg hover:shadow-xl hover:shadow-tertiary/20 transition-all"
+            >
+              <a 
+                href="https://app.postrack.co"
+                aria-label="Get started with Postrack"
+              >
+                <span className="relative z-10 flex items-center">
+                  Get Started Now
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+                
+                {/* Button animation overlay */}
+                <span 
+                  className="absolute inset-0 w-full bg-gradient-to-r from-blue-700 to-tertiary opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                  aria-hidden="true"
+                ></span>
               </a>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600"
-            >
-              <a href="#case-study">See Case Study: 0→250k Views in 1 Hour</a>
-            </Button>
           </div>
-          <p className="mt-6 text-sm opacity-75">14-day audit. No credit card required.</p>
-        </div>
+          
+        </motion.div>
       </div>
     </section>
   )
-}
-
-```
+}```
 
 ## ./src/app/components/Pricing.tsx
 ```
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import React from "react"
 
 const tiers = [
   {
-    name: "Hobby",
+    name: "Starter",
     price: "$49",
+    period: "per month",
     description: "For creators serious about optimizing their content strategy.",
     features: [
       "Track 1 account",
-      "Max 5000 followers",
+      "Max 50,000 followers",
       "Real-time first-hour analytics",
-      "Automated post tracking",
+      "Full lifespan data for posts",
       "AI-powered insights",
-      "Competitor analysis",
-      "30-day data retention",
-      "Email alerts",
     ],
-    cta: "Subscribe",
+    cta: "Get Started",
     mostPopular: true,
   },
   {
-    name: "Locked In",
+    name: "Pro",
     price: "$99",
+    period: "per month",
     description: "For teams and agencies managing multiple accounts.",
     features: [
-      "All Pro features",
-      "Unlimited account tracking",
-      "API access",
-      "Dedicated support",
-      "90-day data retention",
-      "Custom integrations",
+      "All Starter Features",
+      "Max 250,000 followers",
+      "5 individual post tracking",
+      "Cross Post AI Analysis",
+      "AI Post Generator",
     ],
-    cta: "Subscribe",
+    cta: "Get Started",
     mostPopular: false,
   },
 ]
 
 export default function PricingSection() {
   return (
-    <section id="pricing" className="py-20 bg-gradient-radial">
+    <section 
+      id="pricing" 
+      aria-labelledby="pricing-heading"
+      className="py-20 bg-gradient-radial max-w-[1000px] mx-auto"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-xl text-muted-foreground">
+          <h2 
+            id="pricing-heading" 
+            className="text-3xl font-bold mb-4"
+          >
+            Simple, Transparent Pricing
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Choose the plan that's right for you and start optimizing your content strategy today.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 place-items-center">
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className={`flex flex-col p-8 rounded-lg shadow-lg ${
-                tier.mostPopular ? "bg-tertiary text-white ring-2 ring-tertiary" : "bg-card text-card-foreground"
+              className={`relative flex flex-col p-8 rounded-lg shadow-lg w-full max-w-[400px] hover:shadow-xl transition-shadow duration-300 ${
+                tier.mostPopular 
+                  ? "bg-tertiary text-white ring-2 ring-tertiary" 
+                  : "bg-card text-card-foreground"
               }`}
             >
-              <h3 className="text-2xl font-bold mb-4">{tier.name}</h3>
-              <div className="text-4xl font-bold mb-6">{tier.price}</div>
-              <p className="text-sm mb-6">{tier.description}</p>
-              <ul className="mb-8 flex-grow">
+              {tier.mostPopular && (
+                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-tertiary px-4 py-1 rounded-full text-white text-sm font-medium shadow-md">
+                  Most Popular
+                </div>
+              )}
+              
+              <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
+              
+              <div className="flex items-baseline mb-6">
+                <span className="text-4xl font-bold">{tier.price}</span>
+                <span className="ml-2 text-sm opacity-90">{tier.period}</span>
+              </div>
+              
+              <p className="text-sm mb-6 opacity-90">{tier.description}</p>
+              
+              <ul className="mb-8 flex-grow space-y-4">
                 {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-center mb-3">
-                    <Check className="h-5 w-5 mr-2 flex-shrink-0" />
+                  <li key={feature} className="flex items-start">
+                    <Check 
+                      className={`h-5 w-5 mr-3 flex-shrink-0 ${
+                        tier.mostPopular ? "text-white" : "text-tertiary"
+                      }`} 
+                      aria-hidden="true"
+                    />
                     <span className="text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
+              
               <Button
                 size="lg"
                 className={`w-full ${
                   tier.mostPopular
-                    ? "bg-white text-tertiary hover:bg-gray-100"
-                    : "bg-tertiary text-white hover:bg-tertiary/90"
+                    ? "bg-white text-tertiary hover:bg-gray-100 focus:ring focus:ring-white/50"
+                    : "bg-tertiary text-white hover:bg-tertiary/90 focus:ring focus:ring-tertiary/30"
                 }`}
+                aria-label={`${tier.cta} with ${tier.name} plan at ${tier.price} per month`}
               >
                 {tier.cta}
               </Button>
+              
+              {/* Money-back guarantee note */}
+              <p className="text-xs text-center mt-4 opacity-80">
+                14-day money-back guarantee
+              </p>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <p className="text-sm text-gray-500">
+            Need custom enterprise solutions? <a href="#" className="text-tertiary underline hover:text-tertiary/90 focus:outline-none focus:underline">Contact our sales team</a>
+          </p>
         </div>
       </div>
     </section>
   )
-}
-
-```
+}```
 
 ## ./src/app/components/Features.tsx
 ```
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import { Clock, Brain, Users, BarChart2, Zap, ShieldAlert } from "lucide-react"
-import { motion } from "framer-motion"
+import { useCallback, useEffect, useState } from "react"
+import dynamic from "next/dynamic"
+import { Clock, Brain, Users, ShieldAlert, ChevronLeft, ChevronRight } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
+// Lazy load the video component
+const LazyVideo = dynamic(() => import("./LazyVideo"), {
+  loading: () => <div className="w-full h-[400px] bg-gray-100 animate-pulse rounded-lg" />,
+  ssr: false
+})
+
+// Feature data structure
 const features = [
   {
     icon: Clock,
     title: "The 60-Minute Make-or-Break",
-    desc: "X's algorithm prioritizes posts gaining traction fast. We show you exactly how your content performs in this decisive window with second-by-second tracking.",
+    desc: `X's algorithm prioritizes posts gaining traction fast. We show you exactly how your content performs in this decisive window with second-by-second tracking.`,
     details: [
-      "Posts with 5+ replies in first 15 minutes get 6x more algorithmic boost",
-      "Real-time tracking of early engagement velocity",
-      "Precise timestamps of key virality triggers",
+      "We track exactly when each engagement happens, showing the impact of 10 likes in 5 minutes vs spread across an hour",
+      "Compare performance patterns across your posts to identify what drives early momentum", 
+      "Learn which posting strategies consistently generate rapid engagement"
     ],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/postrack_1.mp4",
   },
   {
     icon: Users,
     title: "Who Jumpstarted Virality?",
     desc: "Identify which early engagers have followers that actually respond. No more guessing if a repost from @somerandomdude matters.",
     details: [
-      "Sort amplifiers by follower activity rate",
-      "Filter by verified status and niche authority",
-      "Track which amplifiers consistently drive engagement",
+      "Identify top amplifiers leading to the most impact on a post's viral growth",
+      "Track silent engagement patterns like likes and bookmarks that show genuine interest",
+      "Analyze loud engagements through quotes, retweets and comments that amplify reach",
     ],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/postrack_2.mp4",
   },
   {
     icon: Brain,
-    title: "Your Personal Viral Blueprint",
-    desc: "Our AI compares your top-performing first-hour patterns to suggest replicable tactics: optimal posting times, hook formulas, CTAs.",
+    title: "AI-Powered Engagement Analysis", 
+    desc: "Our AI analyzes every engagement pattern and delivers detailed post-by-post reports, identifying key amplifiers and showing how each interaction impacts your profile's performance.",
     details: [
-      "Pattern analysis of your highest-performing posts",
-      "AI-generated hook and CTA recommendations",
-      "Personalized posting time optimization",
+      "Comprehensive analysis of engagement patterns and their impact",
+      "Identification of top amplifiers and their contribution to virality",
+      "Profile-level performance tracking based on engagement metrics",
     ],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/postrack_3.mp4",
   },
   {
     icon: ShieldAlert,
-    title: "Spy (Legally) On Your Competition",
-    desc: "Input industry leaders' handles to dissect their viral patterns. See what first-hour strategies they repeat, which posts flop, and how their engagement decays.",
+    title: "Learn From the Best",
+    desc: "Input your favorite accounts' handles to dissect their viral patterns. See what first-hour strategies they repeat, which posts flop, and how their engagement decays.",
     details: [
-     
+      "Track any account's first-hour engagement patterns to learn their winning formulas",
+      "Compare successful vs unsuccessful posts to identify key differences in early traction",
+      "Study how top accounts maintain engagement after the critical first hour"
     ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    icon: BarChart2,
-    title: "Growth & Verified Impact",
-    desc: "Measure follow growth and track verified user engagement.",
-    details: [
-      "Watch how verified likes & reposts boost visibility",
-      "Track new followers gained after viral posts",
-      "Uncover patterns that drive consistent growth",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    icon: Zap,
-    title: "10-Second Setup",
-    desc: "Paste in an X handle and we'll get you set up in seconds.",
-    details: [
-      "No coding or complex OAuth steps required",
-      "Automatic data fetching after initial hookup",
-      "Easy for beginners, robust for power users",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/postrack_4.mp4",
   },
 ]
 
 export default function StickyFeatureScroll() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
-
+  const [isInView, setIsInView] = useState<boolean[]>(Array(features.length).fill(false))
+  
+  // Update active index when a section comes into view
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.6,
+    const firstInViewIndex = isInView.findIndex(inView => inView)
+    if (firstInViewIndex !== -1) {
+      setActiveIndex(firstInViewIndex)
     }
+  }, [isInView])
 
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = sectionRefs.current.findIndex((ref) => ref === entry.target)
-          setActiveIndex(index)
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(observerCallback, options)
-    const currentRefs = sectionRefs.current
-
-    currentRefs.forEach((section) => {
-      if (section) observer.observe(section)
+  // Handle intersection observer
+  const onIntersect = useCallback((index: number, inView: boolean) => {
+    setIsInView(prev => {
+      const newState = [...prev]
+      newState[index] = inView
+      return newState
     })
+  }, [])
 
-    return () => {
-      currentRefs.forEach((section) => {
-        if (section) observer.unobserve(section)
-      })
-    }
+  const nextSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % features.length)
+  }, [])
+
+  const prevSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + features.length) % features.length)
   }, [])
 
   return (
-    <div id="features" className="relative px-4 md:px-20 lg:px-40" style={{ height: `${features.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen flex flex-col md:flex-row items-center">
-        <div className="w-full md:w-1/2 flex items-center justify-center px-20">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="text-center md:text-left"
+    <div id="features" className="relative mb-20 md:mb-0">
+      <div className="md:sticky md:top-0 md:h-[calc(100vh*2/3)] flex flex-col md:flex-row md:grid md:grid-cols-3 items-center">
+        {/* Navigation Buttons */}
+        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex md:hidden justify-between px-4 z-10 pointer-events-none">
+          <button 
+            onClick={prevSlide}
+            className="pointer-events-auto backdrop-blur-sm text-tertiary p-2 rounded-full shadow-lg transition-all"
+            aria-label="Previous slide"
           >
-           
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-tertiary to-blue-700 bg-clip-text text-transparent">
-              {features[activeIndex].title}
-            </h2>
-            <p className="text-xl text-muted-foreground mb-6">
-              {features[activeIndex].desc}
-            </p>
-          </motion.div>
+            <ChevronLeft size={24} />
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="pointer-events-auto backdrop-blur-sm hover:bg-white/20 text-tertiary p-2 rounded-full shadow-lg transition-all"
+            aria-label="Next slide"
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
-        <div className="w-full md:w-1/2 flex items-center justify-center p-4">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Image
-              src={features[activeIndex].image || "/placeholder.svg"}
-              alt={features[activeIndex].title}
-              width={600}
-              height={400}
-              className="object-cover rounded-lg shadow-2xl"
-            />
-          </motion.div>
+
+        <div className="w-full md:col-span-1 flex items-center justify-center p-4">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="text-center md:text-left"
+            >
+              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-tertiary to-blue-700 bg-clip-text text-transparent">
+                {features[activeIndex].title}
+              </h2>
+              <p className="text-xl text-muted-foreground mb-6">
+                {features[activeIndex].desc}
+              </p>
+              <ul className="space-y-3 text-gray-600">
+                {features[activeIndex].details.map((detail, index) => (
+                  <li key={index} className="flex items-start text-lg text-gray-500">
+                    <span className="mr-2">•</span>
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="w-full md:col-span-2 flex items-center justify-center p-4">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5 }}
+              className="w-full h-full"
+            >
+              <LazyVideo 
+                src={features[activeIndex].image} 
+                activeIndex={activeIndex}
+              />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      <div>
+      <div className="hidden md:block">
         {features.map((_, i) => (
-          <div
+          <IntersectionObserver
             key={i}
-            ref={(el) => {
-              if (el) {
-                sectionRefs.current[i] = el
-              }
-            }}
-            className={`${i < features.length - 1 ? 'h-screen' : ''}`}
-          />
+            onIntersect={(inView) => onIntersect(i, inView)}
+            threshold={0.6}
+            rootMargin="0px"
+          >
+            <div className={`${i < features.length - 1 ? 'h-[calc(100vh*2/3)]' : ''}`} />
+          </IntersectionObserver>
         ))}
       </div>
     </div>
   )
 }
 
-```
+// IntersectionObserver component
+const IntersectionObserver = ({ 
+  children, 
+  onIntersect,
+  threshold = 0.5,
+  rootMargin = "0px"
+}: {
+  children: React.ReactNode
+  onIntersect: (inView: boolean) => void
+  threshold?: number
+  rootMargin?: string
+}) => {
+  const [ref, setRef] = useState<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!ref) return
+
+    const observer = new window.IntersectionObserver(
+      ([entry]: IntersectionObserverEntry[]) => {
+        onIntersect(entry.isIntersecting)
+      },
+      { threshold, rootMargin }
+    )
+
+    observer.observe(ref)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [ref, onIntersect, threshold, rootMargin])
+
+  return <div ref={setRef}>{children}</div>
+}```
 
 ## ./src/app/components/HowItWorks.tsx
 ```
@@ -529,9 +622,9 @@ import { Link2, Clock, Users, Brain } from "lucide-react"
 export default function HowItWorks() {
   const steps = [
     { icon: Link2, title: "Submit Any Account or Post", description: "Type in an X Handle or paste a link to an individual post." },
-    { icon: Clock, title: "Track the Golden Hour", description: "We monitor your post every 5 minutes during the first critical hour, capturing exactly how early engagement triggers X's algorithm." },
-    { icon: Brain, title: "Sustained Growth", description: "First-hour data tells you how to hack the algorithm. Post-first-hour trends show you how to keep momentum. Get weekly reports comparing early spikes to long-term engagement decay rates." },
-    { icon: Users, title: "Map the Virality Path", description: "See which early reposts/likes came from verified accounts, influencers, or niche communities—the amplifiers that actually move the needle." }
+    { icon: Clock, title: "Track the Golden Hour", description: "We monitor posts every 5 minutes during the first critical hour, capturing exactly how early engagement triggers X's algorithm." },
+    { icon: Brain, title: "Sustained Growth", description: "First-hour data tells you how to hack the algorithm. Post-first-hour trends show you how to keep momentum." },
+    { icon: Users, title: "Map the Virality Path", description: "See which posts did well, which early reposts/likes came from verified accounts, influencers, or niche communities—the amplifiers that actually move the needle." }
     
   ]
 
@@ -659,41 +752,241 @@ export default function FooterSection() {
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+
 export default function HeroSection() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  }
+
   return (
-    <section className="py-20 bg-gradient-to-b from-purple-50 via-pink-50 to-white text-center">
-      <div className="container mx-auto px-4">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-tertiary to-purple-600">
-         See How Posts Go Viral on X
-        </h1>
-        <p className="leading-7 mt-6 text-gray-600 max-w-2xl mx-auto text-lg">
-         <span className="underline decoration-[3px] decoration-blue-700">Track any account or post.</span> Learn from competitors, reverse-engineer viral posts, and benchmark against industry leaders
-        </p>
-        <div className="mt-10 flex justify-center gap-4">
-          <Button asChild size="lg" className="group bg-tertiary text-white hover:bg-tertiary/90">
-            <a href="https://app.postrack.co">
-           Try Postrack
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="bg-white hover:bg-gray-50">
-            <a href="#how-it-works">See In Action</a>
-          </Button>
-        </div>
-        <div className="mt-16">
-          <Image
-            src="/example.jpeg"
-            alt="Postrack Dashboard Preview"
-            className="rounded-lg shadow-2xl mx-auto"
-            width={800}
-            height={800}
+    <section className="py-20 to-white text-center lg:text-left relative overflow-hidden">
+      {/* Background gradient orbs */}
+      {isLoaded && (
+        <>
+          <div 
+            className="absolute top-20 right-10 w-72 h-72  rounded-full blur-3xl" 
+            aria-hidden="true"
           />
-        </div>
+          <div 
+            className="absolute -bottom-20 -left-20 w-96 h-96  rounded-full blur-3xl" 
+            aria-hidden="true"
+          />
+        </>
+      )}
+      
+      <div className="container mx-auto px-4 relative">
+        <motion.div 
+          className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center"
+          initial="hidden"
+          animate="show"
+          variants={container}
+        >
+          <div>
+            <motion.h1 
+              className="scroll-m-20 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-600"
+              variants={item}
+            >
+              See How Posts Go Viral on X
+            </motion.h1>
+            
+            <motion.p 
+              className="leading-7 mt-6 text-gray-600 max-w-2xl mx-auto lg:mx-0 text-lg"
+              variants={item}
+            >
+              <span className="underline decoration-[3px] decoration-blue-700">Track any account or post.</span> Postrack is the missing X analytics tool, for your account, and for any account you want to learn from. Analyze successful accounts, reverse-engineer viral posts, and up your X game.
+            </motion.p>
+            
+            <motion.div 
+              className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+              variants={item}
+            >
+              <Button 
+                asChild 
+                size="lg" 
+                className="group bg-tertiary text-white hover:bg-tertiary/90 shadow-lg hover:shadow-xl hover:shadow-tertiary/20 transition-all"
+              >
+                <a 
+                  href="https://app.postrack.co"
+                  aria-label="Try Postrack application"
+                >
+                  Try Postrack
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+              
+              <Button 
+                asChild 
+                size="lg" 
+                className="relative overflow-hidden group bg-white border border-gray-300 text-gray-900 hover:bg-slate-50 shadow-md"
+              >
+                <a 
+                  href="https://app.postrack.co/example" 
+                  className="flex items-center gap-2"
+                  aria-label="See Postrack in action with examples"
+                >
+                  See In Action
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/25 to-transparent transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" 
+                    aria-hidden="true"
+                  />
+                </a>
+              </Button>
+            </motion.div>
+          </div>
+          
+          <motion.div 
+            className="mt-16 lg:mt-0"
+            variants={item}
+          >
+            <div className="relative group">
+              <Link href="https://app.postrack.co/example">
+                {/* Image frame effects */}
+                <div 
+                  className="absolute -inset-0.5 bg-gradient-to-r from-tertiary to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" 
+                  aria-hidden="true"
+                />
+                
+                <Image
+                  src="/example.png"
+                  alt="Postrack Dashboard showing X analytics data"
+                  className="rounded-lg shadow-2xl mx-auto transition-all duration-300 group-hover:-translate-y-1 relative"
+                  width={800}
+                  height={800}
+                  priority
+                />
+              </Link>
+              
+              {/* Caption for the image */}
+              <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
+                <p className="text-xs text-gray-700">Live dashboard preview</p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
-}
+}```
+
+## ./src/app/components/LazyVideo.tsx
 ```
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+
+interface LazyVideoProps {
+  src: string
+  activeIndex: number
+}
+
+const LazyVideo = ({ src, activeIndex }: LazyVideoProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  // Decide whether to load the video
+  useEffect(() => {
+    // Use setTimeout to defer loading slightly for better performance
+    const timer = setTimeout(() => {
+      setShouldLoad(true)
+    }, 100)
+    
+    return () => clearTimeout(timer)
+  }, [activeIndex])
+
+  // Handle video loading
+  useEffect(() => {
+    if (!videoRef.current || !shouldLoad) return
+
+    const handleLoadedData = () => {
+      setIsLoaded(true)
+    }
+
+    videoRef.current.addEventListener('loadeddata', handleLoadedData)
+    
+    return () => {
+      videoRef.current?.removeEventListener('loadeddata', handleLoadedData)
+    }
+  }, [shouldLoad])
+
+  // Reset video when changing slides
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0
+      videoRef.current.play().catch(err => console.log('Video play failed:', err))
+    }
+  }, [activeIndex])
+
+  if (!src) return null
+
+  // Determine if we're showing video or image
+  const isVideo = src.endsWith('.mp4')
+
+  if (isVideo) {
+    return (
+      <div className="relative w-full">
+        {(!isLoaded && shouldLoad) && (
+          <div className="w-full h-[400px] bg-gray-100 animate-pulse rounded-lg absolute top-0 left-0" />
+        )}
+        {shouldLoad && (
+          <video
+            ref={videoRef}
+            src={src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className={`object-cover rounded-lg shadow-2xl w-full h-auto ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            style={{ transition: 'opacity 0.3s ease-in-out' }}
+            width={800}
+            height={600}
+          />
+        )}
+        {!shouldLoad && (
+          <div className="w-full h-[400px] bg-gray-100 animate-pulse rounded-lg" />
+        )}
+      </div>
+    )
+  }
+
+  // Handle images
+  return (
+    <div className="relative w-full">
+      <Image
+        src={src}
+        alt="Feature showcase"
+        width={600}
+        height={400}
+        className="object-cover rounded-lg shadow-2xl"
+        loading="lazy"
+      />
+    </div>
+  )
+}
+
+export default LazyVideo```
 
 ## ./src/app/components/FAQ.tsx
 ```
@@ -712,19 +1005,19 @@ export default function FAQSection() {
     {
       question: "What is Postrack?",
       answer:
-        "Postrack goes beyond basic analytics to reveal why your content succeeds or fails. " +
+        "Postrack goes beyond basic analytics to reveal why content succeeds or fails. " +
         "We track granular first-hour engagement patterns invisible to X Analytics, then provide AI-powered strategies to replicate viral moments and avoid dead-end posts.",
     },
     {
       question: "How is this better than X Analytics?",
       answer:
-        "X shows you what happened. We show you why it happened—and how to make it happen again. " +
+        "X shows you what happened. We show you why it happened—and how to make it happen again. For not only your account but any public account or post. " +
         "Track granular first-hour metrics X doesn't surface: early verified engagement velocity, reply sentiment shifts, amplifier quality scoring.",
     },
     {
         question: "Can I analyze accounts I don't own?",
         answer:
-          "Yes! Postrack works for any public X account or post. Track influencers in your niche, monitor competitors' campaigns, or study viral posts—no permissions needed.",
+          "Yes! Postrack works for any public X account or post. Track influencers in your niche and monitor competitors' campaigns.",
       },
 
     {
@@ -735,10 +1028,11 @@ export default function FAQSection() {
         "We store this granular data to show you exactly when and why posts gain traction.",
     },
     {
-      question: "Is my data secure?",
+      question: "Can Postrack access historical data?",
       answer:
-        "We treat your data like nuclear codes. Minimal storage, military-grade encryption, and zero credential exposure. " +
-        "Our security protocols are audited quarterly to meet fintech-grade standards.",
+        "Postrack begins tracking from the moment you submit an account or post. We cannot access data from before submission. " +
+        "However, if the account or post you're interested in is already being tracked in our system (because someone else submitted it), " +
+        "you'll automatically see all the historical data we've collected since it was first added to our platform.",
     },
     {
       question: "Do I need to connect my X account?",
@@ -774,7 +1068,7 @@ export default function FAQSection() {
   ]
 
   return (
-    <section className="py-16 bg-muted/10" id="faq">
+    <section className="py-16 " id="faq">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl mb-8 text-center">Frequently Asked Questions</h2>
         <div className="max-w-3xl mx-auto">
@@ -805,11 +1099,23 @@ export default function FAQSection() {
 import "./globals.css"
 import type { Metadata } from "next"
 import Script from 'next/script'
+import { Inter } from 'next/font/google'
 
-// Optional: Basic SEO metadata
+// Load Inter font with specific subsets
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+// Improved SEO metadata
 export const metadata: Metadata = {
-  title: "Postrack: Crack X's Algorithm",
-  description: "",
+  title: "Postrack: See How Posts Go Viral on X",
+  description: "Track any account or post on X. Postrack is the missing X analytics tool that helps you analyze successful accounts and reverse-engineer viral posts.",
+  keywords: "X analytics, Twitter analytics, viral posts, social media tracking, engagement tracking, content strategy",
+  authors: [{ name: "Postrack Team" }],
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#475ded",
 }
 
 export default function RootLayout({
@@ -818,18 +1124,32 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
-        <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         <Script async src="https://tally.so/widgets/embed.js"></Script>
       </head>
-      <body className="bg-white text-gray-900">
-        {children}
+      <body className="bg-white text-gray-900 min-h-screen flex flex-col">
+        {/* Skip to content link for keyboard accessibility */}
+        <a href="#main-content" className="skip-to-content">
+          Skip to content
+        </a>
+        
+        {/* Main content wrapper */}
+        <main id="main-content" className="flex-grow flex flex-col">
+          {children}
+        </main>
+        
+        {/* Accessibility announcement region for screen readers */}
+        <div 
+          className="sr-only" 
+          role="status" 
+          aria-live="polite" 
+          id="a11y-status"
+        ></div>
       </body>
     </html>
   )
-}
-```
+}```
 
 ## ./src/app/page.tsx
 ```
@@ -848,18 +1168,26 @@ export const dynamic = "force-static"
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col min-h-screen ">
+    <main className="flex flex-col min-h-screen  ">
       {/* 
         Each section is a simple, static React server component 
         with minimal or no additional client-side code. 
       */}
+      
+      <div className="bg-gradient-to-b from-purple-50 via-pink-50 to-white px-20 ">
+        <div className="max-w-[1200px] mx-auto">
       <Navbar />
       <HeroSection />
+      </div>
+      </div>
+      <div className="px-20 max-w-[1200px] mx-auto">
       <HowItWorks />
       <Features />
+      </div>
       <CTASection />
+      <div className="px-20 max-w-[1200px]">
       <FAQSection />
-      <Pricing />
+      </div>
       <Footer />
     </main>
   )
@@ -872,10 +1200,115 @@ export default function HomePage() {
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+/* Improved font loading for better performance */
+@layer base {
+  html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    @apply scroll-smooth;
+  }
+  
+  /* Improved focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-tertiary/80;
+  }
+  
+  /* Base contrast improvements */
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  /* Skip to content link for keyboard users */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 
+    focus:px-4 focus:py-2 focus:bg-white focus:text-tertiary focus:shadow-lg focus:rounded-md;
+  }
+  
+  /* Improved heading hierarchy and spacing */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 font-bold;
+  }
+  
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl leading-tight;
+  }
+  
+  h2 {
+    @apply text-3xl sm:text-4xl leading-tight;
+  }
+  
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+  
+  /* Better paragraph readability */
+  p {
+    @apply max-w-prose;
+  }
+  
+  /* Improved link states */
+  a:not([class]) {
+    @apply text-tertiary underline underline-offset-4 hover:text-tertiary/80 
+     focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary/60
+     focus-visible:rounded;
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    @apply bg-tertiary/20 text-gray-900;
+  }
 }
 
+/* Animation utilities */
+@layer utilities {
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientAnimation 4s ease infinite alternate;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  
+  /* Subtle hover animations */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+  
+  /* Animated underline */
+  .animated-underline {
+    position: relative;
+  }
+  
+  .animated-underline::after {
+    @apply bg-tertiary;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .animated-underline:hover::after, 
+  .animated-underline:focus::after {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+}
+
+/* Theme colors and variables */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -904,6 +1337,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+  
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -939,8 +1373,7 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
-```
+}```
 
 ## ./src/components/ui/card.tsx
 ```

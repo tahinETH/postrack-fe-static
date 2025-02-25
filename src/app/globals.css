@@ -2,10 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+/* Improved font loading for better performance */
+@layer base {
+  html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    @apply scroll-smooth;
+  }
+  
+  /* Improved focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-tertiary/80;
+  }
+  
+  /* Base contrast improvements */
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  /* Skip to content link for keyboard users */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 
+    focus:px-4 focus:py-2 focus:bg-white focus:text-tertiary focus:shadow-lg focus:rounded-md;
+  }
+  
+  /* Improved heading hierarchy and spacing */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 font-bold;
+  }
+  
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl leading-tight;
+  }
+  
+  h2 {
+    @apply text-3xl sm:text-4xl leading-tight;
+  }
+  
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+  
+  /* Better paragraph readability */
+  p {
+    @apply max-w-prose;
+  }
+  
+  /* Improved link states */
+  a:not([class]) {
+    @apply text-tertiary underline underline-offset-4 hover:text-tertiary/80 
+     focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary/60
+     focus-visible:rounded;
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    @apply bg-tertiary/20 text-gray-900;
+  }
 }
 
+/* Animation utilities */
+@layer utilities {
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientAnimation 4s ease infinite alternate;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  
+  /* Subtle hover animations */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+  
+  /* Animated underline */
+  .animated-underline {
+    position: relative;
+  }
+  
+  .animated-underline::after {
+    @apply bg-tertiary;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .animated-underline:hover::after, 
+  .animated-underline:focus::after {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+}
+
+/* Theme colors and variables */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -34,6 +139,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+  
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;

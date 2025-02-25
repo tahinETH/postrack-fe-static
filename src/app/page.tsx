@@ -28,10 +28,11 @@ export default function HomePage() {
       <div className="px-20 max-w-[1200px] mx-auto">
       <HowItWorks />
       <Features />
+      </div>
       <CTASection />
+      <div className="px-20 max-w-[1200px]">
       <FAQSection />
       </div>
-      
       <Footer />
     </main>
   )

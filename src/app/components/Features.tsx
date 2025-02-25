@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Clock, Brain, Users, BarChart2, Zap, ShieldAlert, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
+import LazyVideo from "./LazyVideo"
 
 const features = [
   {
@@ -109,7 +110,7 @@ export default function StickyFeatureScroll() {
 
   return (
     <div id="features" className="relative mb-20 md:mb-0 ">
-      <div className="md:sticky md:top-0 md:h-[calc(100vh*2/3)] flex flex-col md:flex-row md:grid md:grid-cols-3 items-center">
+      <div className="md:sticky md:top-0 md:h-[calc(100vh*2/3)] lg:h-screen flex flex-col md:flex-row md:grid md:grid-cols-3 items-center">
         {/* Navigation Buttons */}
         <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex md:hidden justify-between px-4 z-10 pointer-events-none">
           <button 
@@ -161,26 +162,10 @@ export default function StickyFeatureScroll() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {features[activeIndex].image.endsWith('.mp4') ? (
-              <video
-                src={features[activeIndex].image}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="object-cover rounded-lg shadow-2xl"
-                width={800}
-                height={600}
-              />
-            ) : (
-              <Image
-                src={features[activeIndex].image}
-                alt={features[activeIndex].title}
-                width={600}
-                height={400}
-                className="object-cover rounded-lg shadow-2xl"
-              />
-            )}
+            <LazyVideo 
+              src={features[activeIndex].image} 
+              activeIndex={activeIndex} 
+            />
           </motion.div>
         </div>
       </div>
