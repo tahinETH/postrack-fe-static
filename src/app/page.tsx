@@ -30,7 +30,7 @@ export default function HomePage() {
       <Features />
       </div>
       <CTASection />
-      <div className="px-20 max-w-[1200px]">
+      <div className="max-w-[1200px] mx-auto">
       <FAQSection />
       </div>
       <Footer />

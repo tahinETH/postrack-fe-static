@@ -95,7 +95,7 @@ export default function FAQSection() {
 
   return (
     <section 
-      className="py-16 " 
+      className="py-16 mx-auto items-center flex" 
       id="faq"
       ref={sectionRef}
       aria-labelledby="faq-heading"
@@ -105,7 +105,7 @@ export default function FAQSection() {
         {JSON.stringify(faqSchema)}
       </Script>
       
-      <div className="container mx-auto px-4">
+      <div className="lg:w-[800px]">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -127,7 +127,7 @@ export default function FAQSection() {
           <Accordion 
             type="single" 
             collapsible 
-            className="bg-white rounded-lg  divide-y divide-gray-100"
+            className="bg-white rounded-lg divide-y divide-gray-100 w-full"
           >
             {faqs.map((faq, index) => (
               <motion.div
@@ -135,14 +135,15 @@ export default function FAQSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="w-full"
               >
-                <AccordionItem value={`item-${index}`} className="border-none">
+                <AccordionItem value={`item-${index}`} className="border-none w-full">
                   <AccordionTrigger 
-                    className="text-base font-medium p-5 text-left"
+                    className="text-base font-medium p-5 text-left w-full"
                   >
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-gray-700 p-5 pt-0">
+                  <AccordionContent className="text-sm text-gray-700 p-5 pt-0 w-full">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -151,11 +152,11 @@ export default function FAQSection() {
           </Accordion>
         </div>
         
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <p className="text-gray-500">
             Have more questions? <a href="mailto:info@postrack.co" className="text-tertiary hover:underline">Contact our support team</a>
           </p>
-        </div>
+        </div> */}
       </div>
     </section>
   )
