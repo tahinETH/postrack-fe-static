@@ -56,7 +56,7 @@
   
   /* Custom selection color */
   ::selection {
-    @apply bg-tertiary/20 text-gray-900;
+    @apply bg-white text-gray-900;
   }
 }
 

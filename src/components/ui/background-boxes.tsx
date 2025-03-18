@@ -13,7 +13,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     "--yellow-300",
     "--red-300",
     "--purple-300",
-    "--blue-300",
+    "--amber-300",
     "--indigo-300",
     "--violet-300",
   ];

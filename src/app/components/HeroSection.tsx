@@ -42,7 +42,7 @@ export default function BrooklynHeroSection() {
           />
          
           <div 
-            className="absolute top-40 right-20 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-10 dark:opacity-15" 
+            className="absolute top-40 right-20 w-40 h-40 bg-amber-600 rounded-full blur-3xl opacity-10 dark:opacity-15" 
             aria-hidden="true"
           />
         </>
