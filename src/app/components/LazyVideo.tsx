@@ -65,7 +65,7 @@ const LazyVideo = ({ src, activeIndex }: LazyVideoProps) => {
             loop
             muted
             playsInline
-            className={`object-cover rounded-lg shadow-2xl w-full h-auto ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`object-cover rounded-lg  w-full h-auto ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
             style={{ transition: 'opacity 0.3s ease-in-out' }}
             width={800}
             height={600}

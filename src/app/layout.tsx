@@ -3,13 +3,12 @@ import "./globals.css"
 import type { Metadata, Viewport } from "next"
 import Script from 'next/script'
 import { Inter } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+
 
 // Load Inter font with specific subsets
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
+
 
 // OpenGraph and Twitter Card Images
 const ogImageUrl = "/og-image.jpg" // Create this 1200×630px image for social sharing
@@ -118,7 +117,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={GeistSans.className + " dark"}>
       <head>
         <Script async src="https://tally.so/widgets/embed.js"></Script>
         <link rel="manifest" href="/manifest.json" />
@@ -127,14 +126,14 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="theme-color" content="#475ded" />
       </head>
-      <body className="bg-white text-gray-900 min-h-screen flex flex-col">
+      <body className="bg-black text-white min-h-screen flex flex-col">
         {/* Skip to content link for keyboard accessibility */}
         <a href="#main-content" className="skip-to-content">
           Skip to content
         </a>
         
         {/* Main content wrapper */}
-        <main id="main-content" className="flex-grow flex flex-col">
+        <main id="main-content" className={`flex-grow flex flex-col`} >
           {children}
         </main>
         

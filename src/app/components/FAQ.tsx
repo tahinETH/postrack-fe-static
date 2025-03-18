@@ -75,7 +75,7 @@ const faqs = [
   },
 ]
 
-export default function FAQSection() {
+export default function BrooklynFAQSection() {
   const sectionRef = React.useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
@@ -92,10 +92,10 @@ export default function FAQSection() {
       }
     }))
   }
-
+  
   return (
     <section 
-      className="py-16 mx-auto items-center flex" 
+      className="w-full py-16 items-center flex bg-[#F5F2E8] dark:bg-gray-900" 
       id="faq"
       ref={sectionRef}
       aria-labelledby="faq-heading"
@@ -105,7 +105,7 @@ export default function FAQSection() {
         {JSON.stringify(faqSchema)}
       </Script>
       
-      <div className="lg:w-[800px]">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -114,11 +114,12 @@ export default function FAQSection() {
         >
           <h2 
             id="faq-heading" 
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-amber-500 to-red-600 dark:from-amber-400 dark:to-red-500 bg-clip-text text-transparent"
           >
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <div className="w-16 h-1 bg-black dark:bg-amber-500 mx-auto mb-4"></div>
+          <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
             Everything you need to know about Postrack and how it helps you optimize your content
           </p>
         </motion.div>
@@ -127,7 +128,7 @@ export default function FAQSection() {
           <Accordion 
             type="single" 
             collapsible 
-            className="bg-white rounded-lg divide-y divide-gray-100 w-full"
+            className="bg-white dark:bg-gray-800 rounded-md divide-y divide-gray-100 dark:divide-gray-700 w-full shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] dark:shadow-[5px_5px_0px_0px_rgba(251,191,36,1)] border-2 border-black dark:border-amber-500"
           >
             {faqs.map((faq, index) => (
               <motion.div
@@ -139,11 +140,11 @@ export default function FAQSection() {
               >
                 <AccordionItem value={`item-${index}`} className="border-none w-full">
                   <AccordionTrigger 
-                    className="text-base font-medium p-5 text-left w-full"
+                    className="text-lg font-medium p-5 text-left text-gray-900 dark:text-white w-full hover:text-amber-600 dark:hover:text-amber-400"
                   >
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-gray-700 p-5 pt-0 w-full">
+                  <AccordionContent className="text-gray-700 text-lg dark:text-gray-300 p-5 pt-0 w-full border-l-2 border-amber-500 dark:border-amber-400 ml-4">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -152,11 +153,11 @@ export default function FAQSection() {
           </Accordion>
         </div>
         
-        {/* <div className="mt-12 text-center">
-          <p className="text-gray-500">
-            Have more questions? <a href="mailto:info@postrack.co" className="text-tertiary hover:underline">Contact our support team</a>
+        <div className="mt-8 text-center">
+          <p className="text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 inline-block py-2 px-4 rounded-md transform -rotate-1 border-l-2 border-amber-500 dark:border-amber-400">
+            Have more questions? <a href="mailto:info@postrack.co" className="text-amber-600 dark:text-amber-400 font-bold hover:underline">Contact our support team</a>
           </p>
-        </div> */}
+        </div>
       </div>
     </section>
   )

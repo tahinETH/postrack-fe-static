@@ -6,19 +6,21 @@ import { Clock, Brain, Users, BarChart2, Zap, ShieldAlert, ChevronLeft, ChevronR
 import { motion } from "framer-motion"
 import LazyVideo from "./LazyVideo"
 
+// Add type for the color options
+type ColorKey = 'amber' | 'red' | 'black';
+
 const features = [
   {
     icon: Clock,
     title: "The 60-Minute Make-or-Break",
-    desc: `X's algorithm prioritizes posts gaining traction fast. We show you exactly how your content performs in this decisive window with second-by-second tracking.
-
-    `,
+    desc: `X's algorithm prioritizes posts gaining traction fast. We show you exactly how your content performs in this decisive window with second-by-second tracking.`,
     details: [
       "We track exactly when each engagement happens, showing the impact of 10 likes in 5 minutes vs spread across an hour",
       "Compare performance patterns across your posts to identify what drives early momentum", 
       "Learn which posting strategies consistently generate rapid engagement"
     ],
     image: "/postrack_1.mp4",
+    color: "amber" as ColorKey
   },
   {
     icon: Users,
@@ -30,6 +32,7 @@ const features = [
       "Analyze loud engagements through quotes, retweets and comments that amplify reach",
     ],
     image: "/postrack_2.mp4",
+    color: "red" as ColorKey
   },
   {
     icon: Brain,
@@ -41,6 +44,7 @@ const features = [
       "Profile-level performance tracking based on engagement metrics",
     ],
     image: "/postrack_3.mp4",
+    color: "black" as ColorKey
   },
   {
     icon: ShieldAlert,
@@ -52,23 +56,44 @@ const features = [
       "Study how top accounts maintain engagement after the critical first hour"
     ],
     image: "/postrack_4.mp4",
-  },
- /*  {
-    icon: Zap,
-    title: "10-Second Setup", 
-    desc: "Paste in an X handle and we'll get you set up in seconds.",
-    details: [
-      "No connecting X or complex OAuth steps required",
-      "Automatic data fetching after initial hookup",
-      "Easy for beginners, robust for power users",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  }, */
-]
+    color: "amber" as ColorKey
+  }
+] as const;
 
-export default function StickyFeatureScroll() {
+// Map color names to Tailwind classes
+const colorClasses: Record<ColorKey, {
+  bg: string;
+  bgLight: string;
+  text: string;
+  border: string;
+  shadow: string;
+}> = {
+  amber: {
+    bg: "bg-amber-500",
+    bgLight: "bg-amber-100 dark:bg-amber-900/30",
+    text: "text-amber-600 dark:text-amber-400",
+    border: "border-amber-500 dark:border-amber-400",
+    shadow: "shadow-amber-200/50 dark:shadow-amber-500/20"
+  },
+  red: {
+    bg: "bg-red-500",
+    bgLight: "bg-red-100 dark:bg-red-900/30",
+    text: "text-red-600 dark:text-red-400",
+    border: "border-red-500 dark:border-red-400",
+    shadow: "shadow-red-200/50 dark:shadow-red-500/20"
+  },
+  black: {
+    bg: "bg-black dark:bg-gray-800",
+    bgLight: "bg-gray-100 dark:bg-gray-800/50",
+    text: "text-gray-900 dark:text-gray-300",
+    border: "border-black dark:border-gray-600",
+    shadow: "shadow-gray-200/50 dark:shadow-gray-700/20"
+  }
+};
+
+export default function BrooklynFeatureSection() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
+  const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
 
   useEffect(() => {
     const options = {
@@ -81,7 +106,7 @@ export default function StickyFeatureScroll() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const index = sectionRefs.current.findIndex((ref) => ref === entry.target)
-          setActiveIndex(index)
+          if (index >= 0) setActiveIndex(index)
         }
       })
     }
@@ -109,79 +134,128 @@ export default function StickyFeatureScroll() {
   }
 
   return (
-    <div id="features" className="relative mb-20 md:mb-0 ">
-      <div className="md:sticky md:top-0 md:h-[calc(100vh*2/3)] lg:h-screen flex flex-col md:flex-row md:grid md:grid-cols-3 items-center">
-        {/* Navigation Buttons */}
-        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex md:hidden justify-between px-4 z-10 pointer-events-none">
-          <button 
-            onClick={prevSlide}
-            className="pointer-events-auto  backdrop-blur-sm  text-tertiary p-2 rounded-full shadow-lg transition-all"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button 
-            onClick={nextSlide}
-            className="pointer-events-auto backdrop-blur-sm hover:bg-white/20 text-tertiary p-2 rounded-full shadow-lg transition-all"
-            aria-label="Next slide"
-          >
-            <ChevronRight size={24} />
-          </button>
+    <div id="features" className="relative py-32 bg-[#F5F2E8] dark:bg-gray-900">
+      {/* Background subway-inspired texture */}
+      <div className="absolute inset-0 bg-[url('/subway-texture.svg')] bg-repeat opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center mb-24">
+          <h2 className="inline-block text-4xl font-black uppercase tracking-tight mb-8 bg-gradient-to-r from-amber-500 to-red-600 dark:from-amber-400 dark:to-red-500 bg-clip-text text-transparent px-2 py-1 transform -rotate-1">
+            Key Features
+          </h2>
+          
+          <div className="w-32 h-1 bg-black dark:bg-amber-500 mx-auto my-6"></div>
+          
+          <p className="text-xl text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
+            Discover how Postrack helps you optimize your content strategy
+          </p>
         </div>
-
-        <div className="w-full md:col-span-1 flex items-center justify-center p-4">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="text-center md:text-left"
-          >
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-tertiary to-blue-700 bg-clip-text text-transparent">
-              {features[activeIndex].title}
-            </h2>
-            <p className="text-xl text-muted-foreground mb-6">
-              {features[activeIndex].desc}
-            </p>
-            <ul className="space-y-3 text-gray-600">
-              {features[activeIndex].details.map((detail, index) => (
-                <li key={index} className="flex items-start text-lg text-gray-500">
-                  <span className="mr-2">•</span>
-                  {detail}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-
-        <div className="w-full md:col-span-2 flex items-center justify-center p-4">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LazyVideo 
-              src={features[activeIndex].image} 
-              activeIndex={activeIndex} 
-            />
-          </motion.div>
-        </div>
+        
+        {features.map((feature, index) => {
+          const colorSet = colorClasses[feature.color];
+          
+          return (
+            <div 
+              key={index} 
+              ref={(el) => { sectionRefs.current[index] = el }}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-16 items-center mb-36 relative`}
+            >
+              {/* Brooklyn-style corner decorations */}
+              <div className={`absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 ${colorSet.border} -z-10 opacity-50`} aria-hidden="true"></div>
+              <div className={`absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 ${colorSet.border} -z-10 opacity-50`} aria-hidden="true"></div>
+              
+              <div className="w-full md:w-1/2 p-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center md:text-left"
+                >
+                  {/* Feature number tag */}
+                {/*   <div className={`absolute -left-2 md:-left-4 top-0 ${colorSet.bg} text-white dark:text-black w-10 h-10 rounded flex items-center justify-center text-lg font-bold transform -rotate-3 shadow-md`}>
+                    {index + 1}
+                  </div> */}
+                  
+                  <div className="flex items-center gap-4 mb-6 justify-center md:justify-start">
+                    <div className={`p-4 rounded-lg ${colorSet.bgLight} transform -rotate-3`}>
+                      <feature.icon className={`h-7 w-7 ${colorSet.text}`} />
+                    </div>
+                    <h3 className="text-3xl font-bold text-gray-900 dark:text-white">{feature.title}</h3>
+                  </div>
+                  
+                  <p className={`text-xl text-gray-800 dark:text-gray-300 mb-8 border-l-4 ${colorSet.border} pl-5 py-2`}>
+                    {feature.desc}
+                  </p>
+                  
+                  <ul className="space-y-6 text-gray-700 dark:text-gray-400">
+                    {feature.details.map((detail, i) => (
+                      <li key={i} className="flex items-start text-lg">
+                        <span className={`${colorSet.text} font-bold mr-3 text-2xl leading-none`}>•</span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+              
+              <div className="w-full md:w-1/2">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="relative"
+                >
+                  {/* Brooklyn-inspired video frame */}
+                  <div className={`absolute -inset-1 ${colorSet.bg} opacity-70 blur-sm rounded-lg transform rotate-1`} aria-hidden="true"></div>
+                  
+                  <div className={`relative rounded-lg overflow-hidden border-4 ${index % 2 === 0 ? 'border-black dark:border-amber-500' : 'border-amber-500 dark:border-amber-400'} shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)] dark:shadow-[8px_8px_0px_0px_rgba(251,191,36,0.2)] transform ${index % 2 === 0 ? 'rotate-1' : '-rotate-1'}`}>
+                    <LazyVideo 
+                      src={feature.image} 
+                      activeIndex={index} 
+                    />
+                    
+                    {/* Video tag */}
+                    <div className={`absolute -right-2 -bottom-2 ${colorSet.bg} text-white dark:text-black py-1 px-3 text-sm font-bold transform -rotate-3 rounded shadow-md`}>
+                      Preview
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          )
+        })}
       </div>
-
-      <div className="hidden md:block">
-        {features.map((_, i) => (
-          <div
-            key={i}
-            ref={(el) => {
-              if (el) {
-                sectionRefs.current[i] = el
-              }
-            }}
-            className={`${i < features.length - 1 ? 'h-[calc(100vh*2/3)]' : ''}`}
-          />
-        ))}
+      
+      {/* Mobile navigation - Brooklyn-style controls */}
+      <div className="flex justify-center gap-8 mt-16 md:hidden">
+        <button 
+          onClick={prevSlide}
+          className="bg-black dark:bg-amber-500 text-white dark:text-black p-4 rounded-full shadow-lg transform hover:-translate-y-1 transition-all"
+          aria-label="Previous feature"
+        >
+          <ChevronLeft size={28} />
+        </button>
+        
+        <div className="flex gap-4 items-center">
+          {features.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`w-4 h-4 rounded-full transform ${i === activeIndex ? 'scale-125 bg-amber-500 dark:bg-amber-400' : 'bg-gray-300 dark:bg-gray-700'} transition-all`}
+              aria-label={`Go to feature ${i + 1}`}
+            />
+          ))}
+        </div>
+        
+        <button 
+          onClick={nextSlide}
+          className="bg-black dark:bg-amber-500 text-white dark:text-black p-4 rounded-full shadow-lg transform hover:-translate-y-1 transition-all"
+          aria-label="Next feature"
+        >
+          <ChevronRight size={28} />
+        </button>
       </div>
     </div>
   )

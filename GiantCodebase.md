@@ -136,52 +136,160 @@ export default function PricingPage() {
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setMobileMenuOpen(false)
+    }
+  }
+
+  // Close menu when route changes or on resize to desktop
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Prevent scrolling when mobile menu is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [mobileMenuOpen])
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm">
-      <nav 
-        className="container mx-auto flex items-center justify-between p-4 bg-transparent" 
-        aria-label="Main Navigation"
-      >
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 group" aria-label="Postrack Home">
-            <motion.div 
-              whileHover={{ rotate: 15 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm transition-all">
+      <div className="container mx-auto px-4">
+        <nav 
+          className="flex items-center justify-between p-4 bg-transparent" 
+          aria-label="Main navigation"
+          onKeyDown={handleKeyDown}
+        >
+          <div className="flex lg:flex-1">
+            <Link 
+              href="/" 
+              className="-m-1.5 p-1.5 flex items-center gap-2 transition-opacity hover:opacity-90 group"
+              aria-label="Postrack home page"
             >
-              <Image
-                src="/favicon.ico"
-                alt=""
-                width={24}
-                height={24}
-                className="transition-transform group-hover:scale-110"
-              />
+              <motion.div 
+                whileHover={{ rotate: 15 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <Image
+                  src="/favicon.ico"
+                  alt=""
+                  width={24}
+                  height={24}
+                  role="presentation"
+                  className="transition-transform group-hover:scale-110"
+                />
+              </motion.div>
+              <div className="text-xl font-normal mt-1">Postrack</div>
+            </Link>
+          </div>
+          
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open main menu'}</span>
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
+          
+          {/* Desktop navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            <Link 
+              href="/plans" 
+              className="text-gray-700 hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 rounded-md px-2 py-1 animated-underline"
+            >
+              Plans
+            </Link>
+            <Button 
+              asChild 
+              className="bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 shadow-md hover:shadow-lg transition-all"
+            >
+              <Link href="https://app.postrack.co" aria-label="Go to Postrack application">
+                Go To App
+              </Link>
+            </Button>
+          </div>
+        </nav>
+      </div>
+      
+      {/* Mobile menu with animation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            id="mobile-menu" 
+            className="md:hidden bg-white shadow-lg fixed inset-0 top-[73px] z-40 overflow-y-auto"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <motion.div 
+              className="space-y-1 px-6 py-8 divide-y divide-gray-100"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+            >
+              <div className="py-6">
+                <Link
+                  href="/plans"
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Plans
+                </Link>
+              </div>
+              
+              <div className="py-6">
+                <Button 
+                  asChild 
+                  className="w-full mt-2 bg-blue-600 text-white hover:bg-blue-700 py-6 text-lg h-auto"
+                >
+                  <Link 
+                    href="https://app.postrack.co"
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Go to Postrack application"
+                  >
+                    Go To App
+                  </Link>
+                </Button>
+              </div>
             </motion.div>
-            <div className="text-xl font-normal mt-1">Postrack</div>
-          </Link>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <Link 
-            href="/plans" 
-            className="text-gray-700 hover:text-gray-900 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-offset-2 rounded-sm"
-            aria-label="View pricing plans"
-          >
-            Plans
-          </Link>
-          <Button 
-            asChild 
-            className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-          >
-            <Link href="https://app.postrack.co" aria-label="Navigate to application">Go To App</Link>
-          </Button>
-        </div>
-      </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }```
@@ -278,9 +386,10 @@ export default function CTASection() {
 
 ## ./src/app/components/Pricing.tsx
 ```
-import { Check } from "lucide-react"
+import { Check, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import React from "react"
+import Footer from "./Footer"
 
 const tiers = [
   {
@@ -297,6 +406,7 @@ const tiers = [
     ],
     cta: "Get Started",
     mostPopular: true,
+    icon: <Zap className="h-6 w-6" />,
   },
   {
     name: "Pro",
@@ -312,94 +422,107 @@ const tiers = [
     ],
     cta: "Get Started",
     mostPopular: false,
+    icon: <Zap className="h-6 w-6" />,
   },
 ]
 
 export default function PricingSection() {
   return (
-    <section 
-      id="pricing" 
-      aria-labelledby="pricing-heading"
-      className="py-20 bg-gradient-radial max-w-[1000px] mx-auto"
-    >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 
-            id="pricing-heading" 
-            className="text-3xl font-bold mb-4"
-          >
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that's right for you and start optimizing your content strategy today.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8 place-items-center">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={`relative flex flex-col p-8 rounded-lg shadow-lg w-full max-w-[400px] hover:shadow-xl transition-shadow duration-300 ${
-                tier.mostPopular 
-                  ? "bg-tertiary text-white ring-2 ring-tertiary" 
-                  : "bg-card text-card-foreground"
-              }`}
+    <>
+      <section 
+        id="pricing" 
+        aria-labelledby="pricing-heading"
+        className="py-20 from-white to-gray-50 max-w-[1200px] mx-auto"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 
+              id="pricing-heading" 
+              className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-600"
             >
-              {tier.mostPopular && (
-                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-tertiary px-4 py-1 rounded-full text-white text-sm font-medium shadow-md">
-                  Most Popular
-                </div>
-              )}
-              
-              <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
-              
-              <div className="flex items-baseline mb-6">
-                <span className="text-4xl font-bold">{tier.price}</span>
-                <span className="ml-2 text-sm opacity-90">{tier.period}</span>
-              </div>
-              
-              <p className="text-sm mb-6 opacity-90">{tier.description}</p>
-              
-              <ul className="mb-8 flex-grow space-y-4">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start">
-                    <Check 
-                      className={`h-5 w-5 mr-3 flex-shrink-0 ${
-                        tier.mostPopular ? "text-white" : "text-tertiary"
-                      }`} 
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <Button
-                size="lg"
-                className={`w-full ${
-                  tier.mostPopular
-                    ? "bg-white text-tertiary hover:bg-gray-100 focus:ring focus:ring-white/50"
-                    : "bg-tertiary text-white hover:bg-tertiary/90 focus:ring focus:ring-tertiary/30"
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Choose the plan that's right for you and start optimizing your content strategy today.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-10 place-items-center">
+            {tiers.map((tier) => (
+              <div
+                key={tier.name}
+                className={`relative flex flex-col p-8 rounded-2xl shadow-xl w-full max-w-[420px] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
+                  tier.mostPopular 
+                    ? "bg-gradient-to-br from-tertiary to-blue-700 text-white border-2 border-blue-400" 
+                    : "bg-white text-card-foreground border border-gray-200"
                 }`}
-                aria-label={`${tier.cta} with ${tier.name} plan at ${tier.price} per month`}
               >
-                {tier.cta}
-              </Button>
-              
-              {/* Money-back guarantee note */}
-              <p className="text-xs text-center mt-4 opacity-80">
-                14-day money-back guarantee
-              </p>
-            </div>
-          ))}
+                {tier.mostPopular && (
+                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-yellow-300 px-6 py-1.5 rounded-full text-tertiary text-sm font-bold shadow-lg">
+                    Most Popular
+                  </div>
+                )}
+                
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2 rounded-full ${tier.mostPopular ? "bg-white/20" : "bg-tertiary/10"}`}>
+                    {tier.icon}
+                  </div>
+                  <h3 className={`text-2xl font-bold ${tier.mostPopular ? "text-white" : "text-tertiary"}`}>{tier.name}</h3>
+                </div>
+                
+                <div className="flex items-baseline mb-6">
+                  <span className="text-5xl font-extrabold">{tier.price}</span>
+                  <span className="ml-2 text-sm opacity-90">{tier.period}</span>
+                </div>
+                
+                <p className="text-sm mb-8 opacity-90">{tier.description}</p>
+                
+                <ul className="mb-8 flex-grow space-y-4">
+                  {tier.features.map((feature) => (
+                    <li key={feature} className="flex items-start">
+                      <Check 
+                        className={`h-5 w-5 mr-3 flex-shrink-0 ${
+                          tier.mostPopular ? "text-yellow-300" : "text-tertiary"
+                        }`} 
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <Button
+                  size="lg"
+                  className={`w-full font-bold text-base py-6 ${
+                    tier.mostPopular
+                      ? "bg-white text-tertiary hover:bg-gray-100 focus:ring focus:ring-white/50"
+                      : "bg-tertiary text-white hover:bg-tertiary/90 focus:ring focus:ring-tertiary/30"
+                  }`}
+                  aria-label={`${tier.cta} with ${tier.name} plan at ${tier.price} per month`}
+                >
+                  {tier.cta}
+                </Button>
+                
+                {/* Money-back guarantee note */}
+                <p className="text-xs text-center mt-4 opacity-80">
+                  14-day money-back guarantee
+                </p>
+              </div>
+            ))}
+          </div>
+         {/*  
+          <div className="mt-16 text-center p-8 bg-indigo-50 rounded-xl max-w-3xl mx-auto border border-gray-200 shadow-sm">
+            <h3 className="text-xl font-bold mb-3 text-gray-800">Need a custom solution?</h3>
+            <p className="text-gray-600 mb-4">
+              For agencies and enterprises with specific requirements, we offer tailored plans.
+            </p>
+            <Button variant="outline" className="bg-white hover:bg-gray-100 border-gray-300">
+              Contact Us
+            </Button>
+          </div> */}
         </div>
-        
-        <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">
-            Need custom enterprise solutions? <a href="#" className="text-tertiary underline hover:text-tertiary/90 focus:outline-none focus:underline">Contact our sales team</a>
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+      <Footer />
+    </>
   )
 }```
 
@@ -407,23 +530,19 @@ export default function PricingSection() {
 ```
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
-import dynamic from "next/dynamic"
-import { Clock, Brain, Users, ShieldAlert, ChevronLeft, ChevronRight } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import { Clock, Brain, Users, BarChart2, Zap, ShieldAlert, ChevronLeft, ChevronRight } from "lucide-react"
+import { motion } from "framer-motion"
+import LazyVideo from "./LazyVideo"
 
-// Lazy load the video component
-const LazyVideo = dynamic(() => import("./LazyVideo"), {
-  loading: () => <div className="w-full h-[400px] bg-gray-100 animate-pulse rounded-lg" />,
-  ssr: false
-})
-
-// Feature data structure
 const features = [
   {
     icon: Clock,
     title: "The 60-Minute Make-or-Break",
-    desc: `X's algorithm prioritizes posts gaining traction fast. We show you exactly how your content performs in this decisive window with second-by-second tracking.`,
+    desc: `X's algorithm prioritizes posts gaining traction fast. We show you exactly how your content performs in this decisive window with second-by-second tracking.
+
+    `,
     details: [
       "We track exactly when each engagement happens, showing the impact of 10 likes in 5 minutes vs spread across an hour",
       "Compare performance patterns across your posts to identify what drives early momentum", 
@@ -464,45 +583,69 @@ const features = [
     ],
     image: "/postrack_4.mp4",
   },
+ /*  {
+    icon: Zap,
+    title: "10-Second Setup", 
+    desc: "Paste in an X handle and we'll get you set up in seconds.",
+    details: [
+      "No connecting X or complex OAuth steps required",
+      "Automatic data fetching after initial hookup",
+      "Easy for beginners, robust for power users",
+    ],
+    image: "/placeholder.svg?height=400&width=600",
+  }, */
 ]
 
 export default function StickyFeatureScroll() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isInView, setIsInView] = useState<boolean[]>(Array(features.length).fill(false))
-  
-  // Update active index when a section comes into view
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
+
   useEffect(() => {
-    const firstInViewIndex = isInView.findIndex(inView => inView)
-    if (firstInViewIndex !== -1) {
-      setActiveIndex(firstInViewIndex)
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.6,
     }
-  }, [isInView])
 
-  // Handle intersection observer
-  const onIntersect = useCallback((index: number, inView: boolean) => {
-    setIsInView(prev => {
-      const newState = [...prev]
-      newState[index] = inView
-      return newState
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = sectionRefs.current.findIndex((ref) => ref === entry.target)
+          setActiveIndex(index)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, options)
+    const currentRefs = sectionRefs.current
+
+    currentRefs.forEach((section) => {
+      if (section) observer.observe(section)
     })
+
+    return () => {
+      currentRefs.forEach((section) => {
+        if (section) observer.unobserve(section)
+      })
+    }
   }, [])
 
-  const nextSlide = useCallback(() => {
+  const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % features.length)
-  }, [])
+  }
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = () => {
     setActiveIndex((prev) => (prev - 1 + features.length) % features.length)
-  }, [])
+  }
 
   return (
-    <div id="features" className="relative mb-20 md:mb-0">
-      <div className="md:sticky md:top-0 md:h-[calc(100vh*2/3)] flex flex-col md:flex-row md:grid md:grid-cols-3 items-center">
+    <div id="features" className="relative mb-20 md:mb-0 ">
+      <div className="md:sticky md:top-0 md:h-[calc(100vh*2/3)] lg:h-screen flex flex-col md:flex-row md:grid md:grid-cols-3 items-center">
         {/* Navigation Buttons */}
         <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex md:hidden justify-between px-4 z-10 pointer-events-none">
           <button 
             onClick={prevSlide}
-            className="pointer-events-auto backdrop-blur-sm text-tertiary p-2 rounded-full shadow-lg transition-all"
+            className="pointer-events-auto  backdrop-blur-sm  text-tertiary p-2 rounded-full shadow-lg transition-all"
             aria-label="Previous slide"
           >
             <ChevronLeft size={24} />
@@ -517,138 +660,190 @@ export default function StickyFeatureScroll() {
         </div>
 
         <div className="w-full md:col-span-1 flex items-center justify-center p-4">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="text-center md:text-left"
-            >
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-tertiary to-blue-700 bg-clip-text text-transparent">
-                {features[activeIndex].title}
-              </h2>
-              <p className="text-xl text-muted-foreground mb-6">
-                {features[activeIndex].desc}
-              </p>
-              <ul className="space-y-3 text-gray-600">
-                {features[activeIndex].details.map((detail, index) => (
-                  <li key={index} className="flex items-start text-lg text-gray-500">
-                    <span className="mr-2">•</span>
-                    {detail}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="text-center md:text-left"
+          >
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-tertiary to-blue-700 bg-clip-text text-transparent">
+              {features[activeIndex].title}
+            </h2>
+            <p className="text-xl text-muted-foreground mb-6">
+              {features[activeIndex].desc}
+            </p>
+            <ul className="space-y-3 text-gray-600">
+              {features[activeIndex].details.map((detail, index) => (
+                <li key={index} className="flex items-start text-lg text-gray-500">
+                  <span className="mr-2">•</span>
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
 
         <div className="w-full md:col-span-2 flex items-center justify-center p-4">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5 }}
-              className="w-full h-full"
-            >
-              <LazyVideo 
-                src={features[activeIndex].image} 
-                activeIndex={activeIndex}
-              />
-            </motion.div>
-          </AnimatePresence>
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <LazyVideo 
+              src={features[activeIndex].image} 
+              activeIndex={activeIndex} 
+            />
+          </motion.div>
         </div>
       </div>
 
       <div className="hidden md:block">
         {features.map((_, i) => (
-          <IntersectionObserver
+          <div
             key={i}
-            onIntersect={(inView) => onIntersect(i, inView)}
-            threshold={0.6}
-            rootMargin="0px"
-          >
-            <div className={`${i < features.length - 1 ? 'h-[calc(100vh*2/3)]' : ''}`} />
-          </IntersectionObserver>
+            ref={(el) => {
+              if (el) {
+                sectionRefs.current[i] = el
+              }
+            }}
+            className={`${i < features.length - 1 ? 'h-[calc(100vh*2/3)]' : ''}`}
+          />
         ))}
       </div>
     </div>
   )
 }
-
-// IntersectionObserver component
-const IntersectionObserver = ({ 
-  children, 
-  onIntersect,
-  threshold = 0.5,
-  rootMargin = "0px"
-}: {
-  children: React.ReactNode
-  onIntersect: (inView: boolean) => void
-  threshold?: number
-  rootMargin?: string
-}) => {
-  const [ref, setRef] = useState<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    if (!ref) return
-
-    const observer = new window.IntersectionObserver(
-      ([entry]: IntersectionObserverEntry[]) => {
-        onIntersect(entry.isIntersecting)
-      },
-      { threshold, rootMargin }
-    )
-
-    observer.observe(ref)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [ref, onIntersect, threshold, rootMargin])
-
-  return <div ref={setRef}>{children}</div>
-}```
+```
 
 ## ./src/app/components/HowItWorks.tsx
 ```
 "use client"
 
 import { Link2, Clock, Users, Brain } from "lucide-react"
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 export default function HowItWorks() {
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
+  
   const steps = [
-    { icon: Link2, title: "Submit Any Account or Post", description: "Type in an X Handle or paste a link to an individual post." },
-    { icon: Clock, title: "Track the Golden Hour", description: "We monitor posts every 5 minutes during the first critical hour, capturing exactly how early engagement triggers X's algorithm." },
-    { icon: Brain, title: "Sustained Growth", description: "First-hour data tells you how to hack the algorithm. Post-first-hour trends show you how to keep momentum." },
-    { icon: Users, title: "Map the Virality Path", description: "See which posts did well, which early reposts/likes came from verified accounts, influencers, or niche communities—the amplifiers that actually move the needle." }
-    
+    { 
+      icon: Link2, 
+      title: "Submit Any Account or Post", 
+      description: "Type in an X Handle or paste a link to an individual post.",
+      color: "bg-blue-50 text-blue-600",
+      shadowColor: "shadow-blue-200/50"
+    },
+    { 
+      icon: Clock, 
+      title: "Track the Golden Hour", 
+      description: "We monitor posts every 5 minutes during the first critical hour, capturing exactly how early engagement triggers X's algorithm.",
+      color: "bg-purple-50 text-purple-600",
+      shadowColor: "shadow-purple-200/50"
+    },
+    { 
+      icon: Brain, 
+      title: "Sustained Growth", 
+      description: "First-hour data tells you how to hack the algorithm. Post-first-hour trends show you how to keep momentum.",
+      color: "bg-tertiary/10 text-tertiary",
+      shadowColor: "shadow-tertiary/30"
+    },
+    { 
+      icon: Users, 
+      title: "Map the Virality Path", 
+      description: "See which posts did well, which early reposts/likes came from verified accounts, influencers, or niche communities—the amplifiers that actually move the needle.",
+      color: "bg-green-50 text-green-600",
+      shadowColor: "shadow-green-200/50"
+    }
   ]
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  }
+
   return (
-    <section id="how-it-works" className="py-20 bg-white overflow-hidden">
+    <section 
+      id="how-it-works" 
+      className="py-20 bg-white overflow-hidden"
+      ref={sectionRef}
+      aria-labelledby="how-it-works-heading"
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Cracking X's Code</h2>
-        <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((step) => (
-            <div key={step.title} className="flex flex-col items-center text-center">
-              <div className="bg-blue-100 p-4 rounded-full mb-4">
-                <step.icon className="h-8 w-8 text-blue-600" />
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 
+            id="how-it-works-heading" 
+            className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-br from-black to-tertiary bg-clip-text text-transparent"
+          >
+            Cracking X's Code
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Our step-by-step approach to discover what makes content go viral on X
+          </p>
+        </motion.div>
+        
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative"
+          variants={container}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+        >
+          {/* Connection lines between steps */}
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -z-10 hidden lg:block" aria-hidden="true"></div>
+          
+          {steps.map((step, index) => (
+            <motion.div 
+              key={step.title} 
+              className="flex flex-col items-center text-center relative  group"
+              variants={item}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Step number */}
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-sm font-semibold shadow-sm">
+                {index + 1}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              
+              <div className={`${step.color} p-5 rounded-full mb-6 shadow-lg ${step.shadowColor} transition-all duration-300 `}>
+                <step.icon className="h-8 w-8" />
+              </div>
+              
+              <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+              
               <p className="text-gray-600">{step.description}</p>
-            
-            </div>
+            </motion.div>
           ))}
+        </motion.div>
+        
+        {/* Additional context */}
+        <div className="mt-16 text-center mx-auto justify-center items-center flex">
+          <p className="text-gray-500 italic">
+            All of this happens automatically in the background so you can focus on creating great content
+          </p>
         </div>
       </div>
     </section>
   )
-}
-```
+}```
 
 ## ./src/app/components/Footer.tsx
 ```
@@ -755,6 +950,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import LazyVideo from "./LazyVideo"
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -859,25 +1055,21 @@ export default function HeroSection() {
             className="mt-16 lg:mt-0"
             variants={item}
           >
-            <div className="relative group">
+            <div className="relative group hover:scale-[102%] transition-all duration-300">
               <Link href="https://app.postrack.co/example">
-                {/* Image frame effects */}
+                {/* Video frame effects */}
                 <div 
-                  className="absolute -inset-0.5 bg-gradient-to-r from-tertiary to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" 
+                  className="absolute -inset-0.5 bg-gradient-to-r from-tertiary to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 " 
                   aria-hidden="true"
                 />
                 
-                <Image
-                  src="/example.png"
-                  alt="Postrack Dashboard showing X analytics data"
-                  className="rounded-lg shadow-2xl mx-auto transition-all duration-300 group-hover:-translate-y-1 relative"
-                  width={800}
-                  height={800}
-                  priority
+                <LazyVideo 
+                  src="/example.mp4" 
+                  activeIndex={0} 
                 />
               </Link>
               
-              {/* Caption for the image */}
+              {/* Caption for the video */}
               <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
                 <p className="text-xs text-gray-700">Live dashboard preview</p>
               </div>
@@ -999,105 +1191,166 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { motion, useInView } from "framer-motion"
+import Script from "next/script"
+
+// FAQ data
+const faqs = [
+  {
+    question: "What is Postrack?",
+    answer:
+      "Postrack goes beyond basic analytics to reveal why content succeeds or fails. " +
+      "We track granular first-hour engagement patterns invisible to X Analytics, then provide AI-powered strategies to replicate viral moments and avoid dead-end posts.",
+  },
+  {
+    question: "How is this better than X Analytics?",
+    answer:
+      "X shows you what happened. We show you why it happened—and how to make it happen again. For not only your account but any public account or post. " +
+      "Track granular first-hour metrics X doesn't surface: early verified engagement velocity, reply sentiment shifts, amplifier quality scoring.",
+  },
+  {
+    question: "Can I analyze accounts I don't own?",
+    answer:
+      "Yes! Postrack works for any public X account or post. Track influencers in your niche and monitor competitors' campaigns.",
+  },
+  {
+    question: "How does real-time tracking work?",
+    answer:
+      "Our system captures fresh metrics every 5 minutes during the critical first hour, tracking elements X ignores " +
+      "like verified engagement velocity and reply sentiment shifts. After the first hour, we continue monitoring at 30-minute intervals. " +
+      "We store this granular data to show you exactly when and why posts gain traction.",
+  },
+  {
+    question: "Can Postrack access historical data?",
+    answer:
+      "Postrack begins tracking from the moment you submit an account or post. We cannot access data from before submission. " +
+      "However, if the account or post you're interested in is already being tracked in our system (because someone else submitted it), " +
+      "you'll automatically see all the historical data we've collected since it was first added to our platform.",
+  },
+  {
+    question: "Do I need to connect my X account?",
+    answer:
+      "Monitoring public posts requires no login, but connecting your X account unlocks live alerts, AI rescue tactics, " +
+      "and protected content analysis. Full access requires OAuth verification through X's API.",
+  },
+  {
+    question: "Free vs. Pro: What's the difference?",
+    answer:
+      "Free users get basic metrics for one post. Paid unlocks multi-post tracking, first-hour analytics, real-time rescue alerts, " +
+      "amplifier quality scores, and our full suite of AI optimization tactics.",
+  },
+  {
+    question: "Can I track multiple accounts?",
+    answer:
+      "Yes! Manage unlimited X profiles in one dashboard with separate performance dashboards. " +
+      "Agencies love our multi-client support for coordinating rescue campaigns across accounts.",
+  },
+  {
+    question: "What kind of AI-driven insights do you provide?",
+    answer:
+      "Our AI analyzes engagement patterns to suggest viral replication strategies and emergency fixes. " +
+      "You'll get automatic rescue playbooks for failing posts, amplifier targeting lists, and ideal posting schedules tailored to your audience.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Be tracking in 90 seconds: sign up, paste any X post URL, and see your first analysis within 5 minutes. " +
+      "Connect your own handle for full algorithm-decoding capabilities.",
+  },
+]
 
 export default function FAQSection() {
-  const faqs = [
-    {
-      question: "What is Postrack?",
-      answer:
-        "Postrack goes beyond basic analytics to reveal why content succeeds or fails. " +
-        "We track granular first-hour engagement patterns invisible to X Analytics, then provide AI-powered strategies to replicate viral moments and avoid dead-end posts.",
-    },
-    {
-      question: "How is this better than X Analytics?",
-      answer:
-        "X shows you what happened. We show you why it happened—and how to make it happen again. For not only your account but any public account or post. " +
-        "Track granular first-hour metrics X doesn't surface: early verified engagement velocity, reply sentiment shifts, amplifier quality scoring.",
-    },
-    {
-        question: "Can I analyze accounts I don't own?",
-        answer:
-          "Yes! Postrack works for any public X account or post. Track influencers in your niche and monitor competitors' campaigns.",
-      },
+  const sectionRef = React.useRef(null)
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
-    {
-      question: "How does real-time tracking work?",
-      answer:
-        "Our system captures fresh metrics every 5 minutes during the critical first hour, tracking elements X ignores " +
-        "like verified engagement velocity and reply sentiment shifts. After the first hour, we continue monitoring at 30-minute intervals. " +
-        "We store this granular data to show you exactly when and why posts gain traction.",
-    },
-    {
-      question: "Can Postrack access historical data?",
-      answer:
-        "Postrack begins tracking from the moment you submit an account or post. We cannot access data from before submission. " +
-        "However, if the account or post you're interested in is already being tracked in our system (because someone else submitted it), " +
-        "you'll automatically see all the historical data we've collected since it was first added to our platform.",
-    },
-    {
-      question: "Do I need to connect my X account?",
-      answer:
-        "Monitoring public posts requires no login, but connecting your X account unlocks live alerts, AI rescue tactics, " +
-        "and protected content analysis. Full access requires OAuth verification through X's API.",
-    },
-    {
-      question: "Free vs. Pro: What's the difference?",
-      answer:
-        "Free users get basic metrics for one post. Paid unlocks multi-post tracking, first-hour analytics, real-time rescue alerts, " +
-        "amplifier quality scores, and our full suite of AI optimization tactics.",
-    },
-    {
-      question: "Can I track multiple accounts?",
-      answer:
-        "Yes! Manage unlimited X profiles in one dashboard with separate performance dashboards. " +
-        "Agencies love our multi-client support for coordinating rescue campaigns across accounts.",
-    },
-    {
-      question: "What kind of AI-driven insights do you provide?",
-      answer:
-        "Our AI analyzes engagement patterns to suggest viral replication strategies and emergency fixes. " +
-        "You'll get automatic rescue playbooks for failing posts, amplifier targeting lists, and ideal posting schedules tailored to your audience.",
-    },
-    {
-      question: "How do I get started?",
-      answer:
-        "Be tracking in 90 seconds: sign up, paste any X post URL, and see your first analysis within 5 minutes. " +
-        "Connect your own handle for full algorithm-decoding capabilities.",
-    },
-
-  ]
+  // Create FAQ Schema for structured data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  }
 
   return (
-    <section className="py-16 " id="faq">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl mb-8 text-center">Frequently Asked Questions</h2>
+    <section 
+      className="py-16 mx-auto items-center flex" 
+      id="faq"
+      ref={sectionRef}
+      aria-labelledby="faq-heading"
+    >
+      {/* Structured Data for SEO */}
+      <Script id="faq-schema" type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </Script>
+      
+      <div className="lg:w-[800px]">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 
+            id="faq-heading" 
+            className="text-3xl md:text-4xl font-bold mb-4"
+          >
+            Frequently Asked Questions
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Everything you need to know about Postrack and how it helps you optimize your content
+          </p>
+        </motion.div>
+        
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible>
+          <Accordion 
+            type="single" 
+            collapsible 
+            className="bg-white rounded-lg divide-y divide-gray-100 w-full"
+          >
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-base font-normal">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-gray-700">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="w-full"
+              >
+                <AccordionItem value={`item-${index}`} className="border-none w-full">
+                  <AccordionTrigger 
+                    className="text-base font-medium p-5 text-left w-full"
+                  >
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-gray-700 p-5 pt-0 w-full">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
         </div>
-      </div>
- 
         
+        {/* <div className="mt-12 text-center">
+          <p className="text-gray-500">
+            Have more questions? <a href="mailto:info@postrack.co" className="text-tertiary hover:underline">Contact our support team</a>
+          </p>
+        </div> */}
+      </div>
     </section>
   )
-}
-```
+}```
 
 ## ./src/app/layout.tsx
 ```
 // app/layout.tsx
 import "./globals.css"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import Script from 'next/script'
 import { Inter } from 'next/font/google'
 
@@ -1108,14 +1361,105 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+// OpenGraph and Twitter Card Images
+const ogImageUrl = "/og-image.jpg" // Create this 1200×630px image for social sharing
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#475ded",
+}
+
 // Improved SEO metadata
 export const metadata: Metadata = {
-  title: "Postrack: See How Posts Go Viral on X",
-  description: "Track any account or post on X. Postrack is the missing X analytics tool that helps you analyze successful accounts and reverse-engineer viral posts.",
-  keywords: "X analytics, Twitter analytics, viral posts, social media tracking, engagement tracking, content strategy",
+  metadataBase: new URL("https://postrack.co"), // Update with your actual domain
+  title: {
+    template: "%s | Postrack",
+    default: "Postrack: See How Posts Go Viral on X",
+  },
+  description: "Track any account or post on X. Postrack analyzes successful accounts and reverse-engineers viral posts to help you optimize your X content strategy.",
+  keywords: [
+    "X analytics", 
+    "Twitter analytics", 
+    "viral posts", 
+    "social media tracking", 
+    "engagement tracking", 
+    "content strategy",
+    "first hour analytics",
+    "golden hour tracking",
+    "X algorithm",
+    "viral content"
+  ],
   authors: [{ name: "Postrack Team" }],
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#475ded",
+  creator: "Postrack",
+  publisher: "Postrack",
+  applicationName: "Postrack",
+  
+  // Open Graph metadata
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://postrack.co",
+    title: "Postrack: See How Posts Go Viral on X",
+    description: "Track any account or post on X. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
+    siteName: "Postrack",
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Postrack - X Analytics Tool"
+      }
+    ]
+  },
+  
+  // Twitter card metadata
+  twitter: {
+    card: "summary_large_image",
+    title: "Postrack: See How Posts Go Viral on X",
+    description: "Track any account or post on X. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
+    creator: "@postrack", // Update with your actual X handle
+    images: [ogImageUrl],
+  },
+  
+  // Robots directives
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  // Canonical URL
+  alternates: {
+    canonical: "https://postrack.co",
+  },
+  
+  // Icons
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-icon.png', type: 'image/png' }
+    ],
+  },
+  
+  // Verification tags
+  verification: {
+    // google: "your-google-site-verification-id", // Add if you have one
+    // yandex: "your-yandex-verification-id", // Add if you have one
+  },
+  
+  // App information
+  manifest: "/manifest.json", // Create this for PWA support
+  category: "technology",
 }
 
 export default function RootLayout({
@@ -1127,6 +1471,11 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         <Script async src="https://tally.so/widgets/embed.js"></Script>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <meta name="theme-color" content="#475ded" />
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {/* Skip to content link for keyboard accessibility */}
@@ -1185,7 +1534,7 @@ export default function HomePage() {
       <Features />
       </div>
       <CTASection />
-      <div className="px-20 max-w-[1200px]">
+      <div className="max-w-[1200px] mx-auto">
       <FAQSection />
       </div>
       <Footer />
