@@ -228,35 +228,8 @@ export default function BrooklynFeatureSection() {
         })}
       </div>
       
-      {/* Mobile navigation - Brooklyn-style controls */}
-      <div className="flex justify-center gap-8 mt-16 md:hidden">
-        <button 
-          onClick={prevSlide}
-          className="bg-black dark:bg-amber-500 text-white dark:text-black p-4 rounded-full shadow-lg transform hover:-translate-y-1 transition-all"
-          aria-label="Previous feature"
-        >
-          <ChevronLeft size={28} />
-        </button>
-        
-        <div className="flex gap-4 items-center">
-          {features.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIndex(i)}
-              className={`w-4 h-4 rounded-full transform ${i === activeIndex ? 'scale-125 bg-amber-500 dark:bg-amber-400' : 'bg-gray-300 dark:bg-gray-700'} transition-all`}
-              aria-label={`Go to feature ${i + 1}`}
-            />
-          ))}
-        </div>
-        
-        <button 
-          onClick={nextSlide}
-          className="bg-black dark:bg-amber-500 text-white dark:text-black p-4 rounded-full shadow-lg transform hover:-translate-y-1 transition-all"
-          aria-label="Next feature"
-        >
-          <ChevronRight size={28} />
-        </button>
-      </div>
+     
+    
     </div>
   )
 }

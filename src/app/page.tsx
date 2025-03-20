@@ -37,7 +37,7 @@ export default function HomePage() {
     </div>
         </div>
       </div>
-      <div className="w-full  bg-white dark:bg-slate-900">
+      <div className="w-full  hidden lg:block bg-white dark:bg-slate-900">
           <div className="">
             <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch">
               <div className="w-full md:w-1/4 h-20 overflow-hidden shadow-lg md:rounded-l-lg md:rounded-r-none">
