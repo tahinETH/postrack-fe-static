@@ -94,13 +94,13 @@ export default function Navbar() {
           
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center gap-6">
-            <Link 
+            {/* <Link 
               href="/subscribe" 
               className="text-gray-800 dark:text-gray-200 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-1 rounded-md px-3 py-2 relative group"
             >
               Subscribe
               <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-amber-500 dark:bg-amber-400 transition-all group-hover:w-full"></span>
-            </Link>
+            </Link> */}
             <Button 
               asChild 
               className="bg-black text-white dark:bg-amber-500 dark:text-black hover:bg-amber-600 dark:hover:bg-amber-400 hover:text-black focus-visible:ring-2 focus-visible:ring-amber-500 font-bold uppercase tracking-wide shadow-[3px_3px_0px_0px_rgba(251,191,36,1)] dark:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none  transition-all border-2 border-black dark:border-black"

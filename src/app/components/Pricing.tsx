@@ -6,7 +6,7 @@ import Footer from "./Footer"
 const tiers = [
   {
     name: "Starter",
-    price: "$49",
+    price: "$TBD",
     period: "per month",
     description: "For hobbyists getting to know how they could optimize their posting.",
     features: [
@@ -21,7 +21,7 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$99",
+    price: "$TBD",
     period: "per month",
     description: "For dedicated creators doubling down on posting and going vital.",
     features: [
