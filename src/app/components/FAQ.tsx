@@ -155,7 +155,7 @@ export default function BrooklynFAQSection() {
         
         <div className="mt-8 text-center">
           <p className="text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 inline-block py-2 px-4 rounded-md transform -rotate-1 border-l-2 border-amber-500 dark:border-amber-400">
-            Have more questions? <a href="mailto:info@postrack.co" className="text-amber-600 dark:text-amber-400 font-bold hover:underline">Contact our support team</a>
+            Have more questions? <a href="mailto:info@postrack.ai" className="text-amber-600 dark:text-amber-400 font-bold hover:underline">Contact our support team</a>
           </p>
         </div>
       </div>

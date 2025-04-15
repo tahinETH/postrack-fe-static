@@ -22,10 +22,10 @@ export const viewport: Viewport = {
 
 // Improved SEO metadata
 export const metadata: Metadata = {
-  metadataBase: new URL("https://postrack.co"), // Update with your actual domain
+  metadataBase: new URL("https://postrack.ai"), // Update with your actual domain
   title: {
     template: "%s | Postrack",
-    default: "Postrack: See How Posts Go Viral on X",
+    default: "Postrack: Optimize X Engagement",
   },
   description: "Track any account or post on X. Postrack analyzes successful accounts and reverse-engineers viral posts to help you optimize your X content strategy.",
   keywords: [
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://postrack.co",
-    title: "Postrack: See How Posts Go Viral on X",
+    url: "https://postrack.ai",
+    title: "Postrack: Optimize X Engagement",
     description: "Track any account or post on X. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
     siteName: "Postrack",
     images: [
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   // Twitter card metadata
   twitter: {
     card: "summary_large_image",
-    title: "Postrack: See How Posts Go Viral on X",
+    title: "Postrack: Optimize X Engagement",
     description: "Track any account or post on X. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
     creator: "@postrack", // Update with your actual X handle
     images: [ogImageUrl],
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   
   // Canonical URL
   alternates: {
-    canonical: "https://postrack.co",
+    canonical: "https://postrack.ai",
   },
   
   // Icons

@@ -4,6 +4,7 @@ import React from "react"
 import Navbar from "./components/Navbar"
 import HeroSection from "./components/HeroSection"
 import HowItWorks from "./components/HowItWorks"
+import Workshop from "./components/Workshop/Workshop"
 import Features from "./components/Features"
 import CTASection from "./components/CTASection"
 import FAQSection from "./components/FAQ"
@@ -11,6 +12,7 @@ import Footer from "./components/Footer"
 import Pricing from "./components/Pricing"
 import { Boxes } from "@/components/ui/background-boxes"
 import { cn } from "@/lib/utils"
+import Account from "./components/Account/Account"
 // Force static rendering for maximum speed.
 export const dynamic = "force-static"
 
@@ -18,62 +20,40 @@ export const dynamic = "force-static"
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col min-h-screen bg-black">
-  
-     
-      <div className="">
-        <div className="mx-auto w-full">
-          
-         
-            <div
-      className="relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-        <div className="relative z-50">
-         <Navbar />
-         <HeroSection />
-         </div>
+    <main className="flex flex-col min-h-screen bg-white dark:bg-black relative">
+      {/* Dot background pattern */}
       <div
-        className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-      <Boxes />
-    </div>
-        </div>
-      </div>
-      <div className="w-full  hidden lg:block bg-white dark:bg-slate-900">
-          <div className="">
-            <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch">
-              <div className="w-full md:w-1/4 h-20 overflow-hidden shadow-lg md:rounded-l-lg md:rounded-r-none">
-                <div className="h-[10%] bg-black dark:bg-slate-900"></div>
-                <div className="h-[90%] bg-white dark:bg-slate-800"></div>
-              </div>
-              <div className="w-full md:w-1/4 h-20 overflow-hidden shadow-lg -mt-[1px] md:mt-0 md:border-l-0">
-                <div className="h-[30%] bg-black dark:bg-slate-900"></div>
-                <div className="h-[70%] bg-white dark:bg-slate-800"></div>
-              </div>
-              <div className="w-full md:w-1/4 h-20 overflow-hidden shadow-lg -mt-[1px] md:mt-0 md:border-l-0">
-                <div className="h-[50%] bg-black dark:bg-slate-900"></div>
-                <div className="h-[50%] bg-white dark:bg-slate-800"></div>
-              </div>
-              <div className="w-full md:w-1/4 h-20 overflow-hidden shadow-lg -mt-[1px] md:mt-0 md:rounded-r-lg md:rounded-l-none md:border-l-0">
-                <div className="h-[70%] bg-black dark:bg-slate-900"></div>
-                <div className="h-[30%] bg-white dark:bg-slate-800"></div>
-              </div>
+        className={cn(
+          "absolute inset-0 z-0",
+          "[background-size:20px_20px]",
+          "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
+          "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]"
+        )} />
+      
+      {/* Radial gradient overlay for faded look */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+     <Navbar />
+      <div className="relative z-20">
+        <div className="mx-auto w-full">
+          <div className="relative w-full overflow-hidden bg-transparent flex flex-col items-center justify-center rounded-lg">
+            <div className="relative z-50">
+              
+              <HeroSection />
             </div>
           </div>
         </div>
-      
-        <HowItWorks />
-      
-     
-      
-      
-        <Features />
+      </div>
 
-       
-      
-      <CTASection />
-      
+      <div className="relative z-20">
+        <Workshop/>
+        <Account/>
+        <HowItWorks />
+        <Features />
+        <CTASection />
         <FAQSection />
-      
-      <Footer />
+        <Footer />
+      </div>
     </main>
   )
 }

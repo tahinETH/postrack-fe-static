@@ -159,7 +159,7 @@ export default function BrooklynPricingSection() {
           <div className="flex justify-center mt-16">
             <div className="bg-black dark:bg-amber-500 text-white dark:text-black px-6 py-3 transform -rotate-1 shadow-md max-w-md text-center">
               <p className="font-bold">
-                Need a custom solution? <a href="mailto:info@postrack.co" className="underline decoration-2 underline-offset-4 hover:text-amber-300 dark:hover:text-amber-800 transition-colors">Reach out to our team</a>
+                Need a custom solution? <a href="mailto:info@postrack.ai" className="underline decoration-2 underline-offset-4 hover:text-amber-300 dark:hover:text-amber-800 transition-colors">Reach out to our team</a>
               </p>
             </div>
           </div>

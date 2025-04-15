@@ -66,8 +66,7 @@ export default function BrooklynHowItWorks() {
       ref={sectionRef}
       aria-labelledby="how-it-works-heading"
     >
-      {/* Brick pattern background */}
-      <div className="absolute inset-0 bg-[url('/brick-pattern.svg')] bg-repeat opacity-5 dark:opacity-10"></div>
+     
       
       <div className="container mx-auto px-4">
         <motion.div

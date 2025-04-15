@@ -61,7 +61,7 @@ export default function BrooklynCTASection() {
                 className="group relative overflow-hidden bg-white text-white hover:bg-amber-500 hover:text-black border-2 border-black dark:border-amber-500 shadow-lg transition-all font-bold uppercase tracking-wide h-[44px] px-6"
               >
                 <a 
-                  href="https://app.postrack.co"
+                  href="https://app.postrack.ai"
                   aria-label="Get started with Postrack"
                 >
                   <span className="relative z-10 flex items-center text-black">
@@ -80,7 +80,7 @@ export default function BrooklynCTASection() {
               {/* Brooklyn-style decorated link */}
               <div className="relative transform rotate-1 self-center mt-4 sm:mt-0">
                 <a 
-                  href="https://app.postrack.co/example" 
+                  href="https://app.postrack.ai/example" 
                   className="text-gray-800 dark:text-amber-400 font-bold hover:text-amber-600 dark:hover:text-amber-300 underline decoration-2 underline-offset-4 decoration-gray-400 hover:decoration-amber-500 dark:decoration-gray-600 dark:hover:decoration-amber-400 flex items-center"
                 >
                   See Examples First

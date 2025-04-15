@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Clock, Brain, Users, BarChart2, Zap, ShieldAlert, ChevronLeft, ChevronRight } from "lucide-react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import LazyVideo from "./LazyVideo"
 
@@ -132,7 +133,10 @@ export default function BrooklynFeatureSection() {
   const prevSlide = () => {
     setActiveIndex((prev) => (prev - 1 + features.length) % features.length)
   }
-
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  }
   return (
     <div id="features" className="relative py-32 bg-[#F5F2E8] dark:bg-gray-900">
       {/* Background subway-inspired texture */}
@@ -143,7 +147,32 @@ export default function BrooklynFeatureSection() {
           <h2 className="inline-block text-4xl font-black uppercase tracking-tight mb-8 bg-gradient-to-r from-amber-500 to-red-600 dark:from-amber-400 dark:to-red-500 bg-clip-text text-transparent px-2 py-1 transform -rotate-1">
             Key Features
           </h2>
-          
+          <motion.div 
+            className="mt-20 max-w-7xl mx-auto"
+            variants={item}
+          >
+            <div className="relative group hover:scale-[102%] transition-all duration-300">
+              <Link href="https://app.postrack.ai/example">
+                {/* Video frame effects */}
+                <div 
+                  className="absolute -inset-0.5 bg-gradient-to-r from-amber-500 to-red-600 rounded-md blur opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200" 
+                  aria-hidden="true"
+                />
+                
+                <div className="relative rounded-md overflow-hidden border-4 border-black dark:border-gray-200 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(245,158,11,1)]">
+                  <LazyVideo 
+                    src="/example.mp4" 
+                    activeIndex={0} 
+                  />
+                </div>
+              </Link>
+              
+              {/* Caption for the video */}
+              <div className="absolute -bottom-6 right-6 bg-black text-white dark:bg-amber-500 dark:text-black px-5 py-3 rounded-md shadow-md font-bold uppercase text-xs tracking-wider">
+                Live dashboard preview
+              </div>
+            </div>
+          </motion.div>
           <div className="w-32 h-1 bg-black dark:bg-amber-500 mx-auto my-6"></div>
           
           <p className="text-xl text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
