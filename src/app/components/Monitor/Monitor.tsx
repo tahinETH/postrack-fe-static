@@ -5,7 +5,7 @@ import Streak from "./Streak"
 
 export default function Monitor() {
     return (
-        <div>
+        <div id="monitor-virality">
             
             <HowItWorks />
             

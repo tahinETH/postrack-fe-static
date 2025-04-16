@@ -76,27 +76,27 @@ export default function Navbar() {
           {/* Desktop navigation links */}
           <div className="absolute left-1/2 hidden h-full -translate-x-1/2 transform items-center gap-6 text-sm lg:flex">
             <div className="relative h-full w-fit">
-              <Link href="/plans" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/subscribe" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
                 Pricing
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="#ai-workshop" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#ai-workshop" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
                 AI Workshop
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="#account-analysis" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#account-analysis" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
                 Account Analysis
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="#monitor-virality" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#monitor-virality" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
                 Monitor Virality
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="#faq" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#faq" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
                 FAQ
               </Link>
             </div>
