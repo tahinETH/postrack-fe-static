@@ -21,9 +21,9 @@ export default function BrooklynFooterSection() {
               </div>
               <a 
                 className="text-white hover:text-amber-400 transition-colors" 
-                href="mailto:info@postrack.ai"
+                href="mailto:support@postrack.ai"
               >
-                info@postrack.ai
+                support@postrack.ai
               </a>
             </div>
             
