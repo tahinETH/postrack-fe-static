@@ -194,7 +194,7 @@ export default function Navbar() {
               <div className="py-6">
                 <Button 
                   asChild 
-                  className="w-full mt-2 bg-amber-500 text-black hover:bg-amber-400 py-6 text-lg h-auto font-bold tracking-wide"
+                  className="w-full mt-2 bg-amber-500 text-black hover:bg-amber-400 max-w-[120px] mx-auto text-sm h-auto font-bold tracking-wide"
                 >
                   <Link 
                     href="https://app.postrack.ai"

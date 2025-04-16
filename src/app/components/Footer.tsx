@@ -7,7 +7,7 @@ export default function BrooklynFooterSection() {
   const currentYear = new Date().getFullYear()
   
   return (
-    <footer className="bg-gray-900 pt-16 pb-12 border-t-4 border-amber-500 dark:border-amber-400 relative">
+    <footer className="bg-black pt-16 pb-12 border-t border-stone-800 relative">
       {/* Brooklyn-inspired texture */}
       <div className="absolute inset-0 bg-[url('/brick-texture.svg')] bg-repeat opacity-5" aria-hidden="true"></div>
       
@@ -37,6 +37,7 @@ export default function BrooklynFooterSection() {
               Contact Us
             </Button>
           </div>
+
         </div>
         
         {/* Brooklyn-style divider */}

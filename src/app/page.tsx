@@ -3,9 +3,8 @@
 import React from "react"
 import Navbar from "./components/Navbar"
 import HeroSection from "./components/HeroSection"
-import HowItWorks from "./components/HowItWorks"
+import Monitor from "./components/Monitor/Monitor"
 import Workshop from "./components/Workshop/Workshop"
-import Features from "./components/Features"
 import CTASection from "./components/CTASection"
 import FAQSection from "./components/FAQ"
 import Footer from "./components/Footer"
@@ -48,8 +47,7 @@ export default function HomePage() {
       <div className="relative z-20">
         <Workshop/>
         <Account/>
-        <HowItWorks />
-        <Features />
+        <Monitor />
         <CTASection />
         <FAQSection />
         <Footer />

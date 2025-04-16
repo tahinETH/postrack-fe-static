@@ -127,7 +127,7 @@ export default function Workshop() {
 
         <div className="mb-10">
           <h3 className="text-xl font-medium mb-4 text-center text-gray-800 dark:text-gray-200">
-            Steal proven strategies from winners (like an artist)
+            Extract proven strategies from winners
           </h3>
           <People/>
         </div>

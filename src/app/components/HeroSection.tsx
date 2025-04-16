@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import LazyVideo from "./LazyVideo"
+import LazyVideo from "./Monitor/LazyVideo"
 
 export default function BrooklynHeroSection() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -84,14 +84,14 @@ export default function BrooklynHeroSection() {
             >
               <Button 
                 
-                className="bg-white text-sm h-8 dark:bg-amber-500 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
+                className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-500 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
               >
                 <a 
                   href="https://app.postrack.ai"
                   aria-label="Try Postrack application"
                   className="flex items-center"
                 >
-                  Start posting for free
+                  Start posting now
                  {/*  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /> */}
                 </a>
               </Button>

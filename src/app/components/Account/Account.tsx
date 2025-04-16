@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Streak from "../Monitor/Streak"
 
 type AnalysisFeature = {
   id: string
@@ -73,7 +74,7 @@ export default function Account() {
           className="text-center mb-10"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Reverse Engineer Any Account
+            Reverse Engineer <span className="bg-amber-400 text-black px-2 py-1 rounded">Any Account</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             See how they post, what they post, and what works.
@@ -86,7 +87,7 @@ export default function Account() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12"
+          className="grid grid-cols-3 hidden md:flex gap-4 mb-12"
         >
           {features.map((feature) => {
             const iconBgColor = `bg-${feature.color}-100 dark:bg-${feature.color}-900/30`;
@@ -128,6 +129,8 @@ export default function Account() {
         </div>
       
       </div>
+
+      
     </section>
   )
 }
