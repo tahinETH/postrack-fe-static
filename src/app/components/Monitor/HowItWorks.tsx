@@ -58,6 +58,17 @@ export default function HowItWorks() {
   const [activeIndex, setActiveIndex] = useState(0)
   const sectionRefs = useRef<Array<HTMLDivElement | null>>([])
 
+  // Arrow animation variants
+  const arrowVariants = {
+    visible: { 
+      x: 0,
+      transition: { 
+        repeat: Infinity, 
+        repeatType: "reverse" as const,
+        duration: 0.8
+      }
+    }
+  }
 
   return (
     <section 
@@ -111,7 +122,69 @@ export default function HowItWorks() {
           ))}
         </motion.div>
         
-       
+        
+
+        <div className="mt-12 flex justify-center ">
+          <div className="bg-gray-100 dark:bg-transparent py-6 px-6 max-w-md text-center rounded-md border-none border-gray-200 dark:border-white relative">
+            <p className="text-gray-700 dark:text-gray-300 text-md">
+              Track what X hides - automatic monitoring of the metrics that actually matter
+            </p>
+            
+            {/* Right artistic arrow */}
+            <motion.div 
+              className="absolute  bottom-8 hidden md:block"
+              animate="visible"
+              variants={arrowVariants}
+            >
+              <div className="relative">
+                <svg width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg" style={{transform: 'scaleX(-1)'}}>
+                  <path d="M0.5 15C8.5 15 30.5 5 59.5 15" stroke="#FCD34D" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4"/>
+                  <path d="M10 20L0.5 15L10 10" stroke="#FCD34D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </motion.div>
+            
+            {/* Left artistic arrow */}
+            <motion.div 
+              className="absolute -right-0 bottom-8 hidden md:block"
+              animate="visible"
+              variants={arrowVariants}
+            >
+              <div className="relative">
+                <svg width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.5 15C8.5 15 30.5 5 59.5 15" stroke="#FCD34D" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4"/>
+                  <path d="M10 20L0.5 15L10 10" stroke="#FCD34D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </motion.div>
+            
+            <div className="flex justify-center mt-8 relative">
+              <Link href="https://app.postrack.ai/example" className="text-center">
+                <button className="bg-amber-300 text-black font-medium px-4 py-2 hover:scale-[102%] rounded-md shadow-md transition-all duration-200 flex items-center gap-2">
+                  <Zap className="h-5 w-5" />
+                  Explore the demo
+                </button>
+              </Link>
+              
+              {/* Mobile arrow indicators (only visible on small screens) */}
+              <motion.div 
+                className="absolute -left-8 top-1/2 transform -translate-y-1/2 md:hidden"
+                animate="visible"
+                variants={arrowVariants}
+              >
+                <ChevronRight className="h-6 w-6 text-amber-400" />
+              </motion.div>
+              
+              <motion.div 
+                className="absolute -right-8 top-1/2 transform -translate-y-1/2 md:hidden"
+                animate="visible"
+                variants={arrowVariants}
+              >
+                <ChevronLeft className="h-6 w-6 text-amber-400" />
+              </motion.div>
+            </div>
+          </div>
+        </div>
 
         {/* Brooklyn Feature Section Integration */}
         <div className="relative bg-transparent">
@@ -147,13 +220,7 @@ export default function HowItWorks() {
 
          
         </div>
-        <div className="mt-12 flex justify-center mb-20">
-          <div className="bg-gray-100 dark:bg-gray-800 py-3 px-6 max-w-md text-center rounded-md border border-gray-200 dark:border-gray-700">
-            <p className="text-gray-700 dark:text-gray-300 text-sm">
-              Track what X hides - automatic monitoring of the metrics that actually matter
-            </p>
-          </div>
-        </div>
+       
       </div>
     </section>
   )
