@@ -106,6 +106,7 @@ export default function Navbar() {
           <div className="hidden grow flex-row items-center justify-end md:grow-0 lg:flex">
             <Link 
               href="https://app.postrack.ai" 
+              target="_blank"
               className="transition-all duration-150"
               aria-label="Go to Postrack application"
             >
