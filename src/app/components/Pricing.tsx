@@ -4,7 +4,7 @@ import React from "react"
 import Footer from "./Footer"
 
 const tiers = [
-  {
+ /*  {
     name: "Free",
     price: "$0",
     period: "forever",
@@ -16,9 +16,9 @@ const tiers = [
     mostPopular: false,
     icon: <Clock className="h-5 w-5" />,
     comingSoon: true,
-  },
+  }, */
   {
-    name: "Starter",
+    name: "Good",
     price: "$20",
     period: "per month",
     description: "For creators starting their content optimization journey.",
@@ -29,14 +29,14 @@ const tiers = [
       "Real-time analytics dashboard",
       "Basic AI recommendations",
     ],
-    cta: "Get Started",
+    cta: "Get Good",
     mostPopular: false,
     icon: <ZapIcon className="h-5 w-5" />,
     comingSoon: false,
   },
   {
-    name: "Pro",
-    price: "$50",
+    name: "Better",
+    price: "$45",
     period: "per month",
     description: "For serious creators scaling their social presence.",
     features: [
@@ -45,9 +45,8 @@ const tiers = [
       "Monitor 1 account (up to 50,000 followers)",
       "Advanced AI insights",
       "Priority support",
-      "Custom analytics export",
     ],
-    cta: "Upgrade to Pro",
+    cta: "Get Better",
     mostPopular: false,
     icon: <SparkleIcon className="h-5 w-5" />,
     comingSoon: false,
@@ -77,7 +76,7 @@ export default function MinimalistPricingSection() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {tiers.map((tier) => (
               <div
                 key={tier.name}

@@ -74,7 +74,7 @@ export default function Account() {
           className="text-center mb-10"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Reverse Engineer <span className="bg-amber-400 text-black px-2 py-1 rounded">Any Account</span>
+            Reverse Engineer <span className="bg-amber-200 text-black px-2 py-1 rounded">Any Account</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             See how they post, what they post, and what works.

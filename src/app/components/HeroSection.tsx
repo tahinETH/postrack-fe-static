@@ -7,7 +7,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import LazyVideo from "./Monitor/LazyVideo"
 
 export default function BrooklynHeroSection() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -84,7 +83,7 @@ export default function BrooklynHeroSection() {
             >
               <Button 
                 
-                className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-500 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
+                className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-300 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
               >
                 <a 
                   href="https://app.postrack.ai"
