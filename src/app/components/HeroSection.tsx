@@ -96,13 +96,7 @@ export default function BrooklynHeroSection() {
               
             
             </motion.div>
-            
-            <motion.div 
-              className="mt-12 flex items-center justify-center gap-5"
-              variants={item}
-            >
-             
-            </motion.div>
+         
           </div>
           
          

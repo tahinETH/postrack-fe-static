@@ -1,13 +1,15 @@
 "use client"
-
 import { motion } from "framer-motion"
 import { Calendar, CheckCircle, Clock } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useEffect } from "react"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 export default function Streak() {
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -18,16 +20,18 @@ export default function Streak() {
   }
 
   useEffect(() => {
-    // Load Twitter widget script
-    const script = document.createElement("script");
-    script.src = "https://platform.twitter.com/widgets.js";
-    script.async = true;
-    document.body.appendChild(script);
-    
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+    if (isDesktop) {
+      // Load Twitter widget script
+      const script = document.createElement("script");
+      script.src = "https://platform.twitter.com/widgets.js";
+      script.async = true;
+      document.body.appendChild(script);
+      
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [isDesktop]);
 
   return (
     <section id="posting-streak" className="py-20 bg-white/90 dark:bg-black">
@@ -67,9 +71,11 @@ export default function Streak() {
                     consistency that algorithms reward and audiences expect.
                   </p>
                 
-                <div id="tweet-embed" className="mt-6 hidden md:block">
-                <blockquote className="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Consistency beats intensity; keep showing up.</p>&mdash; Bookism (@1Bookism) <a href="https://twitter.com/1Bookism/status/1847576171656904990?ref_src=twsrc%5Etfw">October 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
-                </div>
+                {isDesktop && (
+                  <div id="tweet-embed" className="mt-6">
+                    <blockquote className="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Consistency beats intensity; keep showing up.</p>&mdash; Bookism (@1Bookism) <a href="https://twitter.com/1Bookism/status/1847576171656904990?ref_src=twsrc%5Etfw">October 19, 2024</a></blockquote>
+                  </div>
+                )}
                
               </CardContent>
             </Card>

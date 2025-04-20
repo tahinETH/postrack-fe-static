@@ -117,7 +117,7 @@ export default function Account() {
           <div className="shadow-xl rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="https://postrack.s3.eu-central-003.backblazeb2.com/account_analysis.png"
+                src="https://postrack.s3.eu-central-003.backblazeb2.com/Account+Analysis.webp"
                 alt="Account Analysis Dashboard"
                 width={1000}
                 height={1080}

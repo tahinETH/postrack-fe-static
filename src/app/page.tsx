@@ -21,12 +21,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Postrack: AI Copilot & Analytics for X",
     description: "Unlock viral growth on X with AI content tools and deep analytics.",
-    images: ['/og-image-homepage.jpg'], 
+    images: ['/og-image-homepage.webp'], 
   },
   twitter: {
     title: "Postrack: AI Copilot & Analytics for X",
     description: "Unlock viral growth on X with AI content tools and deep analytics.",
-    images: ['/og-image-homepage.jpg'], // Maybe a different Twitter image?
+    images: ['/og-image-homepage.webp'], // Maybe a different Twitter image?
   }
 }
 

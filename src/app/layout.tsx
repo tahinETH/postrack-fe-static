@@ -18,7 +18,7 @@ declare global {
 
 
 // OpenGraph and Twitter Card Images
-const ogImageUrl = "/og-image-homepage.jpg" // Create this 1200×630px image for social sharing
+const ogImageUrl = "/og-image-homepage.webp" // Create this 1200×630px image for social sharing
 
 export const viewport: Viewport = {
   width: "device-width",
