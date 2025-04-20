@@ -40,7 +40,7 @@ export default function BrooklynHeroSection() {
           animate="show"
           
         >
-        {/*   <motion.div
+          <motion.div
             className="mb-8"
             variants={item}
           >
@@ -60,7 +60,7 @@ export default function BrooklynHeroSection() {
                 />
               </div>
             </MovingButton>
-          </motion.div> */}
+          </motion.div>
           
           <div className="max-w-7xl mx-auto">
             <motion.h1 
@@ -71,9 +71,9 @@ export default function BrooklynHeroSection() {
             </motion.h1>
             
             <p 
-              className="leading-7 mt-10 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg font-medium"
+              className="mt-10 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg font-medium"
             >
-              <span className="px-2 py-1 bg-black text-white dark:bg-white dark:text-black font-bold inline-block">Get better at posting.</span> Postrack helps you learn the secret formula for every successful account, and lets you post like them.
+             Get better at posting. Postrack helps you learn the secret formula for every successful account, and lets you post like them.
             </p>
             
             <motion.div 
