@@ -14,8 +14,23 @@ import { cn } from "@/lib/utils"
 import Account from "./components/Account/Account"
 // Force static rendering for maximum speed.
 export const dynamic = "force-static"
+import { Metadata } from "next"
 
-// (You can also do: export const revalidate = 86400; to re-gen once/day.)
+export const metadata: Metadata = {
+  title: "Postrack: AI Copilot & Analytics for X", // More specific title
+  description: "Unlock viral growth on X. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy.",
+  // Optionally override OpenGraph/Twitter specifically for the homepage if needed
+  openGraph: {
+    title: "Postrack: AI Copilot & Analytics for X",
+    description: "Unlock viral growth on X with AI content tools and deep analytics.",
+    images: ['/og-image-homepage.jpg'], 
+  },
+  twitter: {
+    title: "Postrack: AI Copilot & Analytics for X",
+    description: "Unlock viral growth on X with AI content tools and deep analytics.",
+    images: ['/og-image-homepage.jpg'], // Maybe a different Twitter image?
+  }
+}
 
 export default function HomePage() {
   return (

@@ -6,12 +6,19 @@ import { Inter } from 'next/font/google'
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
+// Declare dataLayer on the Window interface for TypeScript
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void; // Also declare gtag if used directly
+  }
+}
 
 // Load Inter font with specific subsets
 
 
 // OpenGraph and Twitter Card Images
-const ogImageUrl = "/og-image.jpg" // Create this 1200×630px image for social sharing
+const ogImageUrl = "/og-image-homepage.jpg" // Create this 1200×630px image for social sharing
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -20,7 +27,33 @@ export const viewport: Viewport = {
   themeColor: "#475ded",
 }
 
-// Improved SEO metadata
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Postrack",
+  "operatingSystem": "Web",
+  "applicationCategory": "BusinessApplication",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "55"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "30",
+    "priceCurrency": "USD",
+    "url": "https://postrack.ai/subscribe"
+  },
+  "description": "AI Copilot and Analytics for X. Track engagement, analyze competitors, and generate viral-ready content.",
+  "url": "https://postrack.ai",
+  "potentialAction": {
+        "@type": "Action",
+        "target": "https://app.postrack.ai",
+        "name": "Go to App"
+   }
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://postrack.ai"), // Update with your actual domain
   title: {
@@ -29,16 +62,23 @@ export const metadata: Metadata = {
   },
   description: "Track any account or post on X. Postrack analyzes successful accounts and reverse-engineers viral posts to help you optimize your X content strategy.",
   keywords: [
-    "X analytics", 
-    "Twitter analytics", 
-    "viral posts", 
-    "social media tracking", 
-    "engagement tracking", 
-    "content strategy",
-    "first hour analytics",
-    "golden hour tracking",
-    "X algorithm",
-    "viral content"
+    "X analytics",
+    "AI for X",
+    "X tracking tool",
+    "first hour analytics X",
+    "X competitor analysis",
+    "viral post tracking X",
+    "X growth tool",
+    "AI content generation X",
+    "X performance metrics",
+    "Twitter analytics", // Keep for search volume
+    "X engagement tracking",
+    "golden hour tracking X",
+    "understand X algorithm",
+    "X AI copilot",
+    "reverse engineer X success",
+    "X content strategy tool",
+    "improve X posts"
   ],
   authors: [{ name: "Postrack Team" }],
   creator: "Postrack",
@@ -119,7 +159,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className + " dark"}>
       <head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZC4ZVZSD8"></script>
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-YZC4ZVZSD8');
+        `}} />
         <Script async src="https://tally.so/widgets/embed.js"></Script>
+        <Script id="software-schema" type="application/ld+json">
+      {JSON.stringify(softwareSchema)}
+    </Script>
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
