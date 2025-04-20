@@ -70,11 +70,7 @@ export default function BrooklynHeroSection() {
               AI Copilot and Analytics for X
             </motion.h1>
             
-            <p 
-              className="leading-7 mt-10 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg font-medium"
-            >
-              <span className="px-2 py-1 bg-black text-white dark:bg-white dark:text-black font-bold inline-block">Get better at posting.</span> Postrack helps you learn the secret formula for every successful account, and lets you post like them.
-            </p>
+           
             
             <motion.div 
               className="mt-14 flex flex-col sm:flex-row justify-center gap-6"
