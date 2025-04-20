@@ -109,7 +109,7 @@ export default function Workshop() {
   }
   return (
     <section id="ai-workshop" className="py-20 bg-white dark:bg-transparent">
-      <div className="container px-4 mx-auto">
+      <div className=" px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ export default function Workshop() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             {activeCard ? (
-              <div className="h-full">
+              <div className="h-full  max-w-[350px] xs:max-w-[400px] sm:max-w-[600px] md:max-w-2xl">
                 
                   
                {activeCard === "ideator" && (
