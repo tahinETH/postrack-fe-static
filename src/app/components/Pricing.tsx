@@ -33,7 +33,7 @@ export default function MinimalistPricingSection() {
         aria-labelledby="pricing-heading"
         className="py-24 bg-white dark:bg-gray-950 relative"
       >
-        <div className="container mx-auto px-4 pt-10 relative z-10 max-w-5xl">
+        <div className=" mx-auto px-4 pt-10 relative z-10 max-w-5xl">
           <div className="text-center mb-20">
             
             <h2 

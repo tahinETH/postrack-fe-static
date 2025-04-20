@@ -33,7 +33,7 @@ export default function BrooklynHeroSection() {
 
   return (
     <section className="pt-28 pb-10 text-center relative overflow-hidden bg-gray-50 dark:bg-transparent">
-      <div className="container mx-auto px-6 relative">
+      <div className=" mx-auto px-6 relative">
         <motion.div 
           className="flex flex-col items-center"
           initial="hidden"

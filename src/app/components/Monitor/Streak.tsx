@@ -31,7 +31,7 @@ export default function Streak() {
 
   return (
     <section id="posting-streak" className="py-20 bg-white/90 dark:bg-black">
-      <div className="container px-4 mx-auto max-w-[1200px]">
+      <div className=" px-4 mx-auto max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

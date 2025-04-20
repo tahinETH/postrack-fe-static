@@ -27,7 +27,7 @@ export default function CTASection() {
       aria-labelledby="cta-heading"
       ref={containerRef}
     >
-      <div className="container mx-auto  px-4">
+      <div className=" mx-auto  px-4">
         <motion.div 
           className="max-w-3xl bg-slate-800 p-10 rounded-xl mx-auto border-2 border-slate-600"
           initial="hidden"

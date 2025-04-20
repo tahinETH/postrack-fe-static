@@ -11,7 +11,7 @@ export default function BrooklynFooterSection() {
       {/* Brooklyn-inspired texture */}
       <div className="absolute inset-0 bg-[url('/brick-texture.svg')] bg-repeat opacity-5" aria-hidden="true"></div>
       
-      <div className="container mx-auto px-4 relative">
+      <div className=" mx-auto px-4 relative">
         <div className="flex flex-col items-center gap-8 mb-10">
           {/* Contact info with Brooklyn styling */}
           <div className="flex flex-col sm:flex-row items-center gap-6">

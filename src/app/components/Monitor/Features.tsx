@@ -138,11 +138,11 @@ export default function BrooklynFeatureSection() {
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   }
   return (
-    <div id="features" className="relative bg-transparent">
+    <div id="features" className="relative max-w-[1200px] mx-auto bg-transparent">
       {/* Background subway-inspired texture */}
       <div className="absolute inset-0 bg-[url('/subway-texture.svg')] bg-repeat opacity-5 dark:opacity-10" aria-hidden="true"></div>
       
-      <div className="container mx-auto px-6 relative">
+      <div className=" mx-auto px-6 relative">
         <div className="text-center mb-24">
          
           <motion.div 
