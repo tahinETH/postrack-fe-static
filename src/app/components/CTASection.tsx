@@ -49,7 +49,7 @@ export default function CTASection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-black h-8 hover:bg-gray-800 text-white dark:bg-amber-500 dark:hover:bg-amber-600 dark:text-black font-medium"
+                className="bg-black h-8 hover:bg-gray-800 text-white dark:bg-amber-200 dark:hover:bg-amber-200 dark:text-black font-medium"
               >
                 <Link 
                   href="https://app.postrack.ai"

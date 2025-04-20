@@ -8,7 +8,6 @@ import CTASection from "./components/CTASection"
 import FAQSection from "./components/FAQ"
 import Footer from "./components/Footer"
 import Pricing from "./components/Pricing"
-import { Boxes } from "@/components/ui/background-boxes"
 import { cn } from "@/lib/utils"
 import Account from "./components/Account/Account"
 // Force static rendering for maximum speed.

@@ -31,7 +31,7 @@ export default function Streak() {
 
   return (
     <section id="posting-streak" className="py-20 bg-white/90 dark:bg-black">
-      <div className=" px-4 mx-auto max-w-[1200px]">
+      <div className="containerpx-4 mx-auto max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function Streak() {
                     consistency that algorithms reward and audiences expect.
                   </p>
                 
-                <div id="tweet-embed" className="mt-6">
+                <div id="tweet-embed" className="mt-6 hidden md:block">
                 <blockquote className="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Consistency beats intensity; keep showing up.</p>&mdash; Bookism (@1Bookism) <a href="https://twitter.com/1Bookism/status/1847576171656904990?ref_src=twsrc%5Etfw">October 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
                 </div>
                
@@ -88,7 +88,7 @@ export default function Streak() {
                 alt="Posting streak tracker"
                 width={600}
                 height={400}
-                className="w-full h-auto"
+                className="w-fit h-auto"
               />
             </div>
           </motion.div>

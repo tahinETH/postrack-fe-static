@@ -172,7 +172,7 @@ export default function HowItWorks() {
                 animate="visible"
                 variants={arrowVariants}
               >
-                <ChevronRight className="h-6 w-6 text-amber-400" />
+                <ChevronRight className="h-6 w-6 text-amber-300" />
               </motion.div>
               
               <motion.div 
@@ -180,7 +180,7 @@ export default function HowItWorks() {
                 animate="visible"
                 variants={arrowVariants}
               >
-                <ChevronLeft className="h-6 w-6 text-amber-400" />
+                <ChevronLeft className="h-6 w-6 text-amber-300" />
               </motion.div>
             </div>
           </div>
@@ -199,11 +199,11 @@ export default function HowItWorks() {
               <Link href="https://app.postrack.ai/example">
                 {/* Video frame effects */}
                 <div 
-                  className="absolute -inset-0.5 bg-gradient-to-r from-amber-500 to-red-600 rounded-md blur opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200" 
+                  className="absolute -inset-0.5 bg-gradient-to-r from-amber-200 to-red-600 rounded-md blur opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200" 
                   aria-hidden="true"
                 />
                 
-                <div className="relative rounded-md overflow-hidden border-4 border-black dark:border-gray-200 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(245,158,11,1)]">
+                <div className="relative rounded-md overflow-hidden border-4 border-black dark:border-gray-200 dark:shadow-[8px_8px_0px_0px_rgba(245,158,11,1)]">
                   <LazyVideo 
                     src="/example_page.mp4" 
                     activeIndex={0} 
@@ -212,7 +212,7 @@ export default function HowItWorks() {
               </Link>
               
               {/* Caption for the video */}
-              <div className="absolute -bottom-6 right-6 bg-black text-white dark:bg-amber-500 dark:text-black px-5 py-3 rounded-md shadow-md font-bold uppercase text-xs tracking-wider">
+              <div className="absolute -bottom-6 right-6 bg-black text-white dark:bg-amber-200 dark:text-black px-5 py-3 rounded-md shadow-md font-bold uppercase text-xs tracking-wider">
                 Live dashboard preview
               </div>
             </div>

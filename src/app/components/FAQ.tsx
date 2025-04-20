@@ -171,7 +171,7 @@ export default function BrooklynFAQSection() {
         
         <div className="mt-10 text-center items-center mx-auto flex justify-center">
           <p className="text-gray-600 dark:text-gray-400">
-            Have more questions? <a href="mailto:support@postrack.ai" className="text-amber-600 dark:text-amber-400 font-medium hover:underline">Contact us</a>
+            Have more questions? <a href="mailto:support@postrack.ai" className="text-amber-200 dark:text-amber-300 font-medium hover:underline">Contact us</a>
           </p>
         </div>
       </div>

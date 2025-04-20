@@ -30,8 +30,9 @@ export default function Refinement() {
               <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700">
                 <Image 
                   src="https://postrack.s3.eu-central-003.backblazeb2.com/donald_trump.jpg" 
-                  alt="Donald Trump" 
-                  fill
+                  alt="Donald Trump Profile Picture on X" 
+                  width={40}
+                  height={40}
                   className="object-cover"
                 />
               </div>
@@ -54,7 +55,7 @@ export default function Refinement() {
         {/* Arrow Indicator */}
         <div className="flex justify-center mb-4">
           <div className="rounded-full p-1">
-            <ArrowDown className="h-5 w-5 dark:text-amber-400" />
+            <ArrowDown className="h-5 w-5 dark:text-amber-300" />
           </div>
         </div>
 
@@ -73,7 +74,7 @@ export default function Refinement() {
         {/* Try Now Button */}
         <div className="flex justify-center mt-6">
           <Button 
-            className="bg-amber-500 hover:bg-amber-600 dark:bg-red-600 dark:hover:bg-amber-700 text-white dark:text-gray-100 font-medium border border-amber-200 dark:border-amber-800"
+            className="bg-amber-200 hover:bg-amber-200 dark:bg-red-600 dark:hover:bg-amber-200 text-white dark:text-gray-100 font-medium border border-amber-200 dark:border-amber-800"
             onClick={() => window.open('https://app.postrack.ai', '_blank')}
           >
             <Sparkles className="h-4 w-4 mr-2" />

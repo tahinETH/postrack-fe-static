@@ -61,7 +61,7 @@ export default function Navbar() {
                 >
                   <Image
                     src="/favicon.ico"
-                    alt=""
+                    alt="Postrack Logo"
                     width={24}
                     height={24}
                     role="presentation"
@@ -76,27 +76,27 @@ export default function Navbar() {
           {/* Desktop navigation links */}
           <div className="absolute left-1/2 hidden h-full -translate-x-1/2 transform items-center gap-6 text-sm lg:flex">
             <div className="relative h-full w-fit">
-              <Link href="/subscribe" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/subscribe" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 Pricing
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="/#ai-workshop" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#ai-workshop" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 AI Workshop
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="/#account-analysis" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#account-analysis" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 Account Analysis
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="/#monitor-virality" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#monitor-virality" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 Monitor Virality
               </Link>
             </div>
             <div className="relative h-full w-fit">
-              <Link href="/#faq" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-400">
+              <Link href="/#faq" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 FAQ
               </Link>
             </div>
@@ -110,7 +110,7 @@ export default function Navbar() {
               className="transition-all duration-150"
               aria-label="Go to Postrack application"
             >
-              <div className="ml-1 hidden h-8 w-28 items-center justify-center rounded-lg bg-amber-200 hover:bg-amber-400 sm:flex">
+              <div className="ml-1 hidden h-8 w-28 items-center justify-center rounded-lg bg-amber-200 hover:bg-amber-300 sm:flex">
                 <p className="text-sm font-semibold tracking-tight text-black">Go To App</p>
               </div>
             </Link>
@@ -157,35 +157,35 @@ export default function Navbar() {
               <div className="py-6">
                 <Link
                   href="/plans"
-                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-400 transition-colors"
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/workshop"
-                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-400 transition-colors"
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   AI Workshop
                 </Link>
                 <Link
                   href="/account-analysis"
-                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-400 transition-colors"
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Account Analysis
                 </Link>
                 <Link
                   href="/monitor-virality"
-                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-400 transition-colors"
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Monitor Virality
                 </Link>
                 <Link
                   href="/faq"
-                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-400 transition-colors"
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   FAQ
@@ -195,7 +195,7 @@ export default function Navbar() {
               <div className="py-6">
                 <Button 
                   asChild 
-                  className="w-full mt-2 bg-amber-200 text-black hover:bg-amber-400 max-w-[120px] mx-auto text-sm h-auto font-bold tracking-wide"
+                  className="w-full mt-2 bg-amber-200 text-black hover:bg-amber-300 max-w-[120px] mx-auto text-sm h-auto font-bold tracking-wide"
                 >
                   <Link 
                     href="https://app.postrack.ai"

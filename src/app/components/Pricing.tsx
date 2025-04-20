@@ -55,7 +55,7 @@ export default function MinimalistPricingSection() {
                 className="relative flex flex-col p-8 rounded-2xl w-full h-full transition-all duration-200 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-md bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+                  <div className="p-2 rounded-md bg-amber-50 text-amber-200 dark:bg-amber-900/30 dark:text-amber-300">
                     {tier.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -75,7 +75,7 @@ export default function MinimalistPricingSection() {
                 <ul className="mb-8 flex-grow space-y-4">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mr-3 text-amber-600 dark:text-amber-400">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mr-3 text-amber-200 dark:text-amber-300">
                         <Check className="h-4 w-4" aria-hidden="true" />
                       </div>
                       <span className="text-gray-700 dark:text-gray-300 text-sm">{feature}</span>
@@ -86,7 +86,7 @@ export default function MinimalistPricingSection() {
                 <Link href={tier.link} target="_blank">
                   <Button
                     size="lg"
-                    className="w-full py-6 font-medium text-sm bg-amber-600 text-black hover:bg-amber-700 dark:bg-amber-300 dark:hover:bg-amber-400"
+                    className="w-full py-6 font-medium text-sm bg-amber-200 text-black hover:bg-amber-200 dark:bg-amber-300 dark:hover:bg-amber-300"
                     aria-label={`${tier.cta} with ${tier.name} plan at ${tier.price} per month`}
                   >
                     {tier.cta}
@@ -103,7 +103,7 @@ export default function MinimalistPricingSection() {
           <div className="flex justify-center mt-16">
             <div className="text-center max-w-md">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Need a custom solution? <a href="mailto:support@postrack.ai" className="text-amber-600 dark:text-amber-400 hover:underline">Contact us</a>
+                Need a custom solution? <a href="mailto:support@postrack.ai" className="text-amber-200 dark:text-amber-300 hover:underline">Contact us</a>
               </p>
             </div>
           </div>

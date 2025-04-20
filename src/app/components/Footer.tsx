@@ -16,11 +16,11 @@ export default function BrooklynFooterSection() {
           {/* Contact info with Brooklyn styling */}
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <div className="flex items-center gap-2 text-lg font-medium text-white">
-              <div className="p-2 rounded-full bg-amber-500/10">
-                <Mail className="h-5 w-5 text-amber-400" />
+              <div className="p-2 rounded-full bg-amber-200/10">
+                <Mail className="h-5 w-5 text-amber-300" />
               </div>
               <a 
-                className="text-white hover:text-amber-400 transition-colors" 
+                className="text-white hover:text-amber-300 transition-colors" 
                 href="mailto:support@postrack.ai"
               >
                 support@postrack.ai
@@ -31,7 +31,7 @@ export default function BrooklynFooterSection() {
               data-tally-open="wvdrQv"
               data-tally-emoji-text="👋"
               data-tally-emoji-animation="wave"
-              className="bg-black hover:bg-amber-500 hover:text-black text-white border-2 border-amber-500 font-bold flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(251,191,36,0.5)] transition-all"
+              className="bg-black hover:bg-amber-200 hover:text-black text-white border-2 border-amber-200 font-bold flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(251,191,36,0.5)] transition-all"
             >
               <MessageSquare className="h-4 w-4" />
               Contact Us
@@ -42,9 +42,9 @@ export default function BrooklynFooterSection() {
         
         {/* Brooklyn-style divider */}
         <div className="flex items-center justify-center mb-8">
-          <div className="w-16 h-1 bg-amber-500 dark:bg-amber-400"></div>
-          <div className="w-3 h-3 mx-2 bg-amber-500 dark:bg-amber-400 transform rotate-45"></div>
-          <div className="w-16 h-1 bg-amber-500 dark:bg-amber-400"></div>
+          <div className="w-16 h-1 bg-amber-200 dark:bg-amber-300"></div>
+          <div className="w-3 h-3 mx-2 bg-amber-200 dark:bg-amber-300 transform rotate-45"></div>
+          <div className="w-16 h-1 bg-amber-200 dark:bg-amber-300"></div>
         </div>
         
         <div className="text-center flex items-center justify-center gap-1">

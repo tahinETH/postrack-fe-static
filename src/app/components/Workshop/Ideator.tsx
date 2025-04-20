@@ -84,7 +84,7 @@ export default function Ideator() {
 
   return (
     <Card 
-      className="h-[550px] w-full max-w-2xl mx-auto py-3 px-8 border border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-300 dark:border-amber-500 dark:shadow-[0_0_15px_rgba(245,158,11,0.5)] overflow-hidden"
+      className="h-[550px] w-full max-w-2xl mx-auto py-3 px-8 border border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-300 dark:border-amber-200 dark:shadow-[0_0_15px_rgba(245,158,11,0.5)] overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 15 }}
@@ -99,8 +99,9 @@ export default function Ideator() {
               <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700">
                 <Image 
                   src="https://postrack.s3.eu-central-003.backblazeb2.com/levelsio.jpg" 
-                  alt="Pieter Levels" 
-                  fill
+                  alt="Pieter Levels Profile Picture on X" 
+                  width={40}
+                  height={40}
                   className="object-cover"
                 />
               </div>
@@ -123,7 +124,7 @@ export default function Ideator() {
         {/* Arrow Indicator */}
         <div className="flex justify-center mb-4">
           <div className="rounded-full p-1">
-            <ArrowDown className="h-5 w-5 dark:text-amber-400" />
+            <ArrowDown className="h-5 w-5 dark:text-amber-300" />
           </div>
         </div>
 
@@ -176,13 +177,13 @@ export default function Ideator() {
                   <div className="bg-slate-700 border border-slate-700 rounded-md overflow-hidden h-[200px]">
                     <div className="p-3 border-b border-slate-600">
                       <div className="flex items-center mb-1">
-                        <span className="text-xs font-semibold text-amber-400 mr-2">Post Idea:</span>
+                        <span className="text-xs font-semibold text-amber-300 mr-2">Post Idea:</span>
                       </div>
                       <p className="font-semibold text-white text-sm">{card.idea}</p>
                     </div>
                     <div className="p-4">
                       <div className="flex items-center mb-1">
-                        <span className="text-xs font-semibold text-amber-400 mr-2">Example Post:</span>
+                        <span className="text-xs font-semibold text-amber-300 mr-2">Example Post:</span>
                       </div>
                       <p className="text-sm text-slate-200">{card.example}</p>
                     </div>
@@ -209,7 +210,7 @@ export default function Ideator() {
               }}
               className={`w-2 h-2 rounded-full transition-all ${
                 currentCardIndex === index 
-                  ? 'bg-amber-400 w-4' 
+                  ? 'bg-amber-300 w-4' 
                   : 'bg-gray-300 dark:bg-gray-600'
               }`}
               aria-label={`Go to idea ${index + 1}`}
@@ -220,7 +221,7 @@ export default function Ideator() {
         {/* Try Now Button */}
         <div className="flex justify-center mt-6">
           <Button 
-            className="bg-amber-400 hover:bg-amber-400 text-black font-medium"
+            className="bg-amber-300 hover:bg-amber-300 text-black font-medium"
             onClick={() => window.open('https://app.postrack.ai', '_blank')}
           >
             <Sparkles className="h-4 w-4 mr-2" />

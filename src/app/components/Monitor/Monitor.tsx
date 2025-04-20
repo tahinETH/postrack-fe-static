@@ -1,4 +1,4 @@
-import Features from "./Features"
+
 import HowItWorks from "./HowItWorks"
 import Streak from "./Streak"
 

@@ -38,7 +38,7 @@ export default function BrooklynHeroSection() {
           className="flex flex-col items-center"
           initial="hidden"
           animate="show"
-          variants={container}
+          
         >
           <motion.div
             className="mb-8"
@@ -70,12 +70,11 @@ export default function BrooklynHeroSection() {
               AI Copilot and Analytics for X
             </motion.h1>
             
-            <motion.p 
+            <p 
               className="leading-7 mt-10 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg font-medium"
-              variants={item}
             >
               <span className="px-2 py-1 bg-black text-white dark:bg-white dark:text-black font-bold inline-block">Get better at posting.</span> Postrack helps you learn the secret formula for every successful account, and lets you post like them.
-            </motion.p>
+            </p>
             
             <motion.div 
               className="mt-14 flex flex-col sm:flex-row justify-center gap-6"
