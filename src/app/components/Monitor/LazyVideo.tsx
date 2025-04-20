@@ -28,7 +28,7 @@ const LazyVideo = ({ src, activeIndex }: LazyVideoProps) => {
 
   return (
     <div className="relative w-full">
-      <Link href="https://app.postrack.ai/example">
+      
         <Image
           src={imageSrc}
           alt="Feature showcase for Postrack"
@@ -36,7 +36,7 @@ const LazyVideo = ({ src, activeIndex }: LazyVideoProps) => {
           height={600}
           className="object-cover rounded-lg w-full h-auto shadow-2xl"
         />
-      </Link>
+     
     </div>
   )
 }
