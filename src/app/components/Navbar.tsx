@@ -57,7 +57,7 @@ export default function Navbar() {
                 <motion.div 
                   whileHover={{ rotate: 15 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="bg-black dark:bg-amber-500 p-1 rounded-sm mr-2"
+                  className="bg-black dark:bg-amber-200 p-1 rounded-sm mr-2"
                 >
                   <Image
                     src="/favicon.ico"

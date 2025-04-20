@@ -108,7 +108,7 @@ export default function Workshop() {
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   }
   return (
-    <section id="ai-workshop" className="py-20 bg-white dark:bg-transparent">
+    <section id="ai-workshop" className="py-20 bg-white dark:bg-transparent max-w-[1400px] mx-auto">
       <div className=" px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -146,7 +146,7 @@ export default function Workshop() {
               const feature_color = isActive ? feature.color : "gray";
               const iconBgColor = isActive ? `bg-${feature.color}-100 dark:bg-${feature.color}-900/30` : "bg-gray-100 dark:bg-gray-800";
               const iconTextColor = isActive ? `text-${feature.color}-700 dark:text-${feature.color}-300` : "text-gray-700 dark:text-gray-300";
-              const badgeClass = isActive ? `bg-${feature.color}-100 text-${feature.color}-800 dark:bg-${feature.color}-900 dark:text-${feature.color}-300` : "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300";
+              const badgeClass = "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300";
               const borderColor = isActive ? `border-${feature.color}-400 dark:border-${feature.color}-500` : "border-gray-200 dark:border-gray-800";
               
               return (
@@ -198,7 +198,7 @@ export default function Workshop() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             {activeCard ? (
-              <div className="h-full  max-w-[350px] xs:max-w-[400px] sm:max-w-[600px] md:max-w-2xl">
+              <div className="h-full  justif-center flex mx-auto max-w-[350px] xs:max-w-[400px] sm:max-w-[600px] md:max-w-2xl ">
                 
                   
                {activeCard === "ideator" && (

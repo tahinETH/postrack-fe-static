@@ -67,7 +67,7 @@ export default function BrooklynHeroSection() {
               className="scroll-m-20 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-clip-text text-transparent dark:text-white"
               variants={item}
             >
-              Grow Your X Account with AI
+              AI Copilot and Analytics for X
             </motion.h1>
             
             <motion.p 
@@ -83,7 +83,7 @@ export default function BrooklynHeroSection() {
             >
               <Button 
                 
-                className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-300 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
+                className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-200 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
               >
                 <a 
                   href="https://app.postrack.ai"
