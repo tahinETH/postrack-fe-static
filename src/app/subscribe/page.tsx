@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Postrack - Affordable X Analytics & AI Tools",
+    title: "Postrack - AI Copilot and Analytics for X",
     description: "Get full access to Postrack's powerful X analytics, AI content generation, and competitor tracking features with one simple, affordable plan.",
     openGraph: {
       title: "Postrack Pricing",

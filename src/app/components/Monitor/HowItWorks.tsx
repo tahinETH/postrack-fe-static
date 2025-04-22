@@ -28,7 +28,7 @@ export default function HowItWorks() {
       icon: Brain, 
       title: "Algorithm Decoder", 
       description: "X tells you views - Postrack shows HOW posts gain traction and WHY some maintain momentum",
-      color: "black"
+      color: "white"
     },
     { 
       icon: Users, 
