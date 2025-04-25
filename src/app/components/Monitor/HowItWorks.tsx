@@ -30,12 +30,7 @@ export default function HowItWorks() {
       description: "X tells you views - Postrack shows HOW posts gain traction and WHY some maintain momentum",
       color: "white"
     },
-    { 
-      icon: Users, 
-      title: "Amplifier Network Mapping", 
-      description: "X hides sharing patterns - Postrack exposes exactly which accounts and communities drive virality",
-      color: "amber"
-    }
+  
   ]
 
   const container = {
@@ -101,7 +96,7 @@ export default function HowItWorks() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid md:grid-cols-3 gap-6 mx-auto max-w-[1200px]"
         >
           {features.map((feature, index) => (
             <motion.div 

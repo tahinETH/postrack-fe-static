@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export default function Ideator() {
-  const [inputText] = useState("i went to a coffe shop today.")
+  const [inputText] = useState("i went to a coffee shop today.")
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
   const [showRightArrow, setShowRightArrow] = useState(true)

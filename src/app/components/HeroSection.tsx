@@ -84,14 +84,15 @@ export default function BrooklynHeroSection() {
                 
                 className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-200 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
               >
-                <a 
+                <Link
                   href="https://app.postrack.ai"
                   aria-label="Try Postrack application"
                   className="flex items-center"
+                  target="_blank"
                 >
                   Start posting now
                  {/*  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /> */}
-                </a>
+                </Link>
               </Button>
               
             

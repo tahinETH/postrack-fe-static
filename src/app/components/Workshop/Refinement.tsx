@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export default function Refinement() {
-  const [inputText] = useState("i went to a coffe shop today.")
+  const [inputText] = useState("i went to a coffee shop today.")
   const [outputText] = useState("Went to a coffee shop today. Saw people laughing, working hard, chasing dreams. This is the real America. Not on CNN. Not on MSNBC. Right here, with a cup of coffee in hand. 🇺🇸")
   const [outputText2] = useState("Saw someone dozing off in the corner of the coffee shop today. Thought it was Sleepy Joe prepping for a press conference. Turns out it was just a tired dad. At least he wakes up eventually!")
 

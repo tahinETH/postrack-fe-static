@@ -147,7 +147,7 @@ export default function Workshop() {
               const iconBgColor = isActive ? `bg-${feature.color}-100 dark:bg-${feature.color}-900/30` : "bg-gray-100 dark:bg-gray-800";
               const iconTextColor = isActive ? `text-${feature.color}-700 dark:text-${feature.color}-300` : "text-gray-700 dark:text-gray-300";
               const badgeClass = "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300";
-              const borderColor = isActive ? `border-${feature.color}-400 dark:border-${feature.color}-500` : "border-gray-200 dark:border-gray-800";
+              const borderColor = isActive ? `border-${feature.color}-200 dark:border-${feature.color}-500` : "border-gray-200 dark:border-gray-800";
               
               return (
                 <motion.div key={feature.id} variants={item}>
