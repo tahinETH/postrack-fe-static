@@ -10,6 +10,7 @@ import Footer from "./components/Footer"
 import Pricing from "./components/Pricing"
 import { cn } from "@/lib/utils"
 import Account from "./components/Account/Account"
+import Head from "next/head"
 // Force static rendering for maximum speed.
 export const dynamic = "force-static"
 import { Metadata } from "next"
@@ -33,6 +34,19 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="flex flex-col min-h-screen bg-white dark:bg-black relative">
+      <Head>
+        <meta property="og:title" content="Postrack: AI Copilot & Analytics for X" />
+        <meta property="og:description" content="Unlock viral growth on X. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy." />
+        <meta property="og:image" content="/og-image-homepage.webp" /> 
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Postrack - AI Copilot & Analytics for X" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_larger_image" />  
+        <meta name="twitter:title" content="Postrack: AI Copilot & Analytics for X" />
+        <meta name="twitter:description" content="Unlock viral growth on X with AI content tools and deep analytics." />
+        <meta name="twitter:image" content="/og-image-homepage.webp" />
+      </Head>
+      
       {/* Dot background pattern */}
       <div
         className={cn(
