@@ -34,7 +34,7 @@ export default function Streak() {
   }, [isDesktop]);
 
   return (
-    <section id="posting-streak" className="py-20 bg-white/90 dark:bg-black">
+    <section id="posting-streak" className="py-20 bg-transparent">
       <div className="containerpx-4 mx-auto max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -31,7 +31,7 @@ export default function MinimalistPricingSection() {
       <section 
         id="pricing" 
         aria-labelledby="pricing-heading"
-        className="py-24 bg-white dark:bg-gray-950 relative"
+        className="py-24 bg-black relative"
       >
         <div className=" mx-auto px-4 pt-10 relative z-10 max-w-5xl">
           <div className="text-center mb-20">
@@ -109,7 +109,7 @@ export default function MinimalistPricingSection() {
           </div>
         </div>
       </section>
-      <Footer />
+      
     </>
   )
 }
