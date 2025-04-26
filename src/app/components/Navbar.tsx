@@ -76,7 +76,7 @@ export default function Navbar() {
           {/* Desktop navigation links */}
           <div className="absolute left-1/2 hidden h-full -translate-x-1/2 transform items-center gap-6 text-sm lg:flex">
             <div className="relative h-full w-fit">
-              <Link href="/subscribe" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
+              <Link href="/#pricing" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 Pricing
               </Link>
             </div>

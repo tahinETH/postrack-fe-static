@@ -61,6 +61,7 @@ export default function HomePage() {
         <Workshop/>
         <Account/>
         <Monitor />
+        <Pricing/>
         <CTASection />
         <FAQSection />
         <Footer />

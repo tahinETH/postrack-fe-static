@@ -43,7 +43,7 @@ const softwareSchema = {
     "@type": "Offer",
     "price": "30",
     "priceCurrency": "USD",
-    "url": "https://postrack.ai/subscribe"
+    "url": "https://postrack.ai/#pricing"
   },
   "description": "AI Copilot and Analytics for X. Track engagement, analyze competitors, and generate viral-ready content.",
   "url": "https://postrack.ai",
