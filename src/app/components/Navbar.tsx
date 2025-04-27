@@ -156,35 +156,35 @@ export default function Navbar() {
             >
               <div className="py-6">
                 <Link
-                  href="/plans"
+                  href="/#pricing"
                   className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Pricing
                 </Link>
                 <Link
-                  href="/workshop"
+                  href="/#ai-workshop"
                   className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   AI Workshop
                 </Link>
                 <Link
-                  href="/account-analysis"
+                  href="/#account-analysis"
                   className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Account Analysis
                 </Link>
                 <Link
-                  href="/monitor-virality"
+                  href="/#monitor-virality"
                   className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Monitor Virality
                 </Link>
                 <Link
-                  href="/faq"
+                  href="/#faq"
                   className="block rounded-md px-3 py-4 text-lg font-medium text-[#9C9C9D] hover:text-amber-300 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >

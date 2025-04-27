@@ -37,14 +37,14 @@ export default function HomePage() {
       <Head>
         <meta property="og:title" content="Postrack: AI Copilot & Analytics for X" />
         <meta property="og:description" content="Unlock viral growth on X. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy." />
-        <meta property="og:image" content="/og-image-homepage.webp" /> 
+        <meta property="og:image" content="https://postrack.ai/og-image-homepage.webp" /> 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Postrack - AI Copilot & Analytics for X" />
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary_larger_image" />  
         <meta name="twitter:title" content="Postrack: AI Copilot & Analytics for X" />
         <meta name="twitter:description" content="Unlock viral growth on X with AI content tools and deep analytics." />
-        <meta name="twitter:image" content="/og-image-homepage.webp" />
+        <meta name="twitter:image" content="https://postrack.ai/og-image-homepage.webp" />
       </Head>
       
       {/* Dot background pattern */}
