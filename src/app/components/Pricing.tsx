@@ -103,7 +103,7 @@ export default function MinimalistPricingSection() {
           <div className="flex justify-center mt-16">
             <div className="text-center max-w-md">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Need a custom solution? <a href="mailto:support@postrack.ai" className="text-amber-200 dark:text-amber-300 hover:underline">Contact us</a>
+                Need a custom solution? <a href="mailto:furkan@postrack.ai" className="text-amber-200 dark:text-amber-300 hover:underline">Contact the founder</a>
               </p>
             </div>
           </div>
