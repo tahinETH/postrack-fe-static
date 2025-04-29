@@ -77,12 +77,11 @@ export default function BrooklynHeroSection() {
             </p>
             
             <motion.div 
-              className="mt-14 flex flex-col sm:flex-row justify-center gap-6"
+              className="mt-14 flex flex-col justify-center gap-6"
               variants={item}
             >
               <Button 
-                
-                className="bg-white max-w-[200px] mx-auto text-sm h-8 dark:bg-amber-200 text-black dark:text-black border-neutral-200 dark:border-slate-800  font-bold  tracking-wide"
+                className="bg-white max-w-[200px] mx-auto text-sm h-12 dark:bg-amber-200 text-black dark:text-black border-neutral-200 dark:border-slate-800 font-bold tracking-wide"
               >
                 <Link
                   href="https://app.postrack.ai"
@@ -92,15 +91,26 @@ export default function BrooklynHeroSection() {
                 >
                   Start posting now
                  {/*  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /> */}
+                 
                 </Link>
               </Button>
               
-            
+              <div className="bg-white max-w-[400px] mx-auto text-black  rounded-lg p-4 shadow-md transition-all duration-300 border border-gray-200 dark:border-amber-400 dark:bg-amber-50 flex flex-col  items-center justify-between gap-3">
+                <div className="flex flex-col items-center">
+                  <span className="font-medium text-gray-900">Take Postrack's X Improver Quiz</span>
+                  <span className="text-xs text-gray-600">Discover how to improve your X strategy in just 60 seconds</span>
+                </div>
+                <Button 
+                  className="bg-amber-200 hover:bg-amber-300 text-black font-medium px-4 py-2 rounded-md"
+                  data-tally-open="wAaO50" 
+                  data-tally-emoji-text="👋" 
+                  data-tally-emoji-animation="wave"
+                >
+                  Take Quiz
+                </Button>
+              </div>
             </motion.div>
-         
           </div>
-          
-         
         </motion.div>
       </div>
     </section>

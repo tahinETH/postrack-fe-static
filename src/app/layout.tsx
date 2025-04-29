@@ -177,6 +177,7 @@ export default function RootLayout({
       a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
       twq('config','pllwz');
     `}} />
+    
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -192,6 +193,7 @@ export default function RootLayout({
         {/* Main content wrapper */}
         <main id="main-content" className={`flex-grow flex flex-col`} >
           {children}
+          
         </main>
         
         {/* Accessibility announcement region for screen readers */}
