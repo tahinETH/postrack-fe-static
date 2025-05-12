@@ -8,11 +8,31 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
+// Add type declaration for Tally
+declare global {
+  interface Window {
+    Tally?: {
+      openPopup: (formId: string) => void;
+    };
+  }
+}
+
 export default function BrooklynHeroSection() {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isQuizOpen, setIsQuizOpen] = useState(false)
   
   useEffect(() => {
     setIsLoaded(true)
+    // Add a small delay before opening the quiz
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && window.Tally && !localStorage.getItem('postrack-quiz-opened')) {
+        window.Tally.openPopup('wAaO50')
+        setIsQuizOpen(true)
+        localStorage.setItem('postrack-quiz-opened', 'true')
+      }
+    }, 1000)
+
+    return () => clearTimeout(timer) // Cleanup the timer
   }, [])
 
   const container = {
@@ -38,7 +58,6 @@ export default function BrooklynHeroSection() {
           className="flex flex-col items-center"
           initial="hidden"
           animate="show"
-          
         >
           <motion.div
             className="mb-8"
@@ -46,7 +65,6 @@ export default function BrooklynHeroSection() {
           >
             <MovingButton 
               borderRadius="1rem"
-              
               className=" bg-black cursor-default text-white dark:bg-black dark:text-white font-bold tracking-wide rounded-none"
             >
               <div className="flex flex-row items-center">
@@ -77,11 +95,11 @@ export default function BrooklynHeroSection() {
             </p>
             
             <motion.div 
-              className="mt-14 flex flex-col justify-center gap-6"
+              className="mt-14 flex flex-row justify-center gap-6"
               variants={item}
             >
               <Button 
-                className="bg-white max-w-[200px] mx-auto text-sm h-12 dark:bg-amber-200 text-black dark:text-black border-neutral-200 dark:border-slate-800 font-bold tracking-wide"
+                className="bg-white max-w-[200px] mx-auto text-sm h-10 dark:bg-amber-200 text-black dark:text-black border-neutral-200 dark:border-slate-800 font-bold tracking-wide"
               >
                 <Link
                   href="https://app.postrack.ai"
@@ -89,27 +107,13 @@ export default function BrooklynHeroSection() {
                   className="flex items-center"
                   target="_blank"
                 >
-                  Start posting now
-                 {/*  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /> */}
-                 
+                 Start Free Trial
                 </Link>
               </Button>
+             
               
-              <div className="bg-white max-w-[400px] mx-auto text-black  rounded-lg p-4 shadow-md transition-all duration-300 border border-gray-200 dark:border-amber-400 dark:bg-amber-50 flex flex-col  items-center justify-between gap-3">
-                <div className="flex flex-col items-center">
-                  <span className="font-medium text-gray-900">Take Postrack's X Improver Quiz</span>
-                  <span className="text-xs text-gray-600">Discover how to improve your X strategy in just 60 seconds</span>
-                </div>
-                <Button 
-                  className="bg-amber-200 hover:bg-amber-300 text-black font-medium px-4 py-2 rounded-md"
-                  data-tally-open="wAaO50" 
-                  data-tally-emoji-text="👋" 
-                  data-tally-emoji-animation="wave"
-                >
-                  Take Quiz
-                </Button>
-              </div>
             </motion.div>
+            
           </div>
         </motion.div>
       </div>

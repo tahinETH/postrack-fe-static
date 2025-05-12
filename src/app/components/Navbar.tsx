@@ -10,13 +10,6 @@ import { motion, AnimatePresence } from "framer-motion"
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 
-  // Handle keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setMobileMenuOpen(false)
-    }
-  }
-
   // Close menu when route changes or on resize to desktop
   React.useEffect(() => {
     const handleResize = () => {
@@ -29,7 +22,7 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Prevent scrolling when mobile menu is open
+
   React.useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -41,6 +34,13 @@ export default function Navbar() {
       document.body.style.overflow = 'auto'
     }
   }, [mobileMenuOpen])
+
+  // Function to open the quiz popup
+  const openQuizPopup = () => {
+    if (typeof window !== 'undefined' && window.Tally) {
+      window.Tally.openPopup('wAaO50')
+    }
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 py-6">
@@ -99,6 +99,14 @@ export default function Navbar() {
               <Link href="/#faq" className="relative flex h-full items-center gap-1.5 text-sm text-[#9C9C9D] hover:text-amber-300">
                 FAQ
               </Link>
+            </div>
+            <div className="relative h-full w-fit">
+              <button 
+                onClick={openQuizPopup}
+                className="relative flex h-full items-center gap-1.5 text-sm text-amber-200 hover:text-amber-300 underline"
+              >
+                Take Quiz
+              </button>
             </div>
           </div>
           
@@ -190,6 +198,15 @@ export default function Navbar() {
                 >
                   FAQ
                 </Link>
+                <button
+                  onClick={() => {
+                    openQuizPopup();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block rounded-md px-3 py-4 text-lg font-medium text-amber-200 hover:text-amber-300 transition-colors underline w-full text-left"
+                >
+                  Take Quiz
+                </button>
               </div>
               
               <div className="py-6">

@@ -93,9 +93,6 @@ export default function MinimalistPricingSection() {
                   </Button>
                 </Link>
                 
-                <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-4">
-                  14-day money-back guarantee
-                </p>
               </div>
             ))}
           </div>
