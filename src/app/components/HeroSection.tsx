@@ -85,7 +85,7 @@ export default function BrooklynHeroSection() {
               className="scroll-m-20 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-clip-text text-transparent dark:text-white"
               variants={item}
             >
-              AI Copilot and Analytics for X
+              AI Copilot and Analytics for Twitter
             </motion.h1>
             
             <p 

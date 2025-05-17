@@ -15,19 +15,19 @@ export default function HowItWorks() {
     { 
       icon: Link2, 
       title: "Monitor ANY Account", 
-      description: "X limits you to your own analytics - Postrack lets you track competitors, influencers, and rising stars",
+      description: "Twitter limits you to your own analytics - Postrack lets you track competitors, influencers, and rising stars",
       color: "amber"
     },
     { 
       icon: Clock, 
       title: "Real-Time Virality Radar", 
-      description: "X shows daily summaries - Postrack tracks posts every 5 minutes in the first hour to catch viral moments as they happen",
+      description: "Twitter shows daily summaries - Postrack tracks posts every 5 minutes in the first hour to catch viral moments as they happen",
       color: "red"
     },
     { 
       icon: Brain, 
       title: "Algorithm Decoder", 
-      description: "X tells you views - Postrack shows HOW posts gain traction and WHY some maintain momentum",
+      description: "Twitter tells you views - Postrack shows HOW posts gain traction and WHY some maintain momentum",
       color: "white"
     },
   
@@ -84,10 +84,10 @@ export default function HowItWorks() {
             id="how-it-works-heading" 
             className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
           >
-            <span className="bg-blue-500 text-white px-2 py-1 rounded">Post Analytics</span> X Won't Show You
+            <span className="bg-blue-500 text-white px-2 py-1 rounded">Post Analytics</span> Twitter Won't Show You
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            While X shows basic numbers, Postrack reveals the hidden patterns that actually drive virality
+            While Twitter shows basic numbers, Postrack reveals the hidden patterns that actually drive virality
           </p>
         </motion.div>
         
@@ -122,7 +122,7 @@ export default function HowItWorks() {
         <div className="mt-12 flex justify-center ">
           <div className="bg-gray-100 dark:bg-transparent py-6 px-6 max-w-md text-center rounded-md border-none border-gray-200 dark:border-white relative">
             <p className="text-gray-700 dark:text-gray-300 text-md">
-              Track what X hides - automatic monitoring of the metrics that actually matter
+              Track what Twitter hides - automatic monitoring of the metrics that actually matter
             </p>
             
             {/* Right artistic arrow */}

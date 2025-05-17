@@ -16,17 +16,17 @@ export const dynamic = "force-static"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Postrack: AI Copilot & Analytics for X", // More specific title
-  description: "Unlock viral growth on X. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy.",
+  title: "Postrack: AI Copilot & Analytics for Twitter", // More specific title
+  description: "Unlock viral growth on Twitter. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy.",
   // Optionally override OpenGraph/Twitter specifically for the homepage if needed
   openGraph: {
-    title: "Postrack: AI Copilot & Analytics for X",
-    description: "Unlock viral growth on X with AI content tools and deep analytics.",
+    title: "Postrack: AI Copilot & Analytics for Twitter",
+    description: "Unlock viral growth on Twitter with AI content tools and deep analytics.",
     images: ['/og-image-homepage.webp'], 
   },
   twitter: {
-    title: "Postrack: AI Copilot & Analytics for X",
-    description: "Unlock viral growth on X with AI content tools and deep analytics.",
+    title: "Postrack: AI Copilot & Analytics for Twitter",
+    description: "Unlock viral growth on Twitter with AI content tools and deep analytics.",
     images: ['/og-image-homepage.webp'], // Maybe a different Twitter image?
   }
 }
@@ -35,15 +35,15 @@ export default function HomePage() {
   return (
     <main className="flex flex-col min-h-screen bg-white dark:bg-black relative">
       <Head>
-        <meta property="og:title" content="Postrack: AI Copilot & Analytics for X" />
-        <meta property="og:description" content="Unlock viral growth on X. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy." />
+        <meta property="og:title" content="Postrack: AI Copilot & Analytics for Twitter" />
+        <meta property="og:description" content="Unlock viral growth on Twitter. Postrack provides AI-driven content generation, real-time analytics, and competitor insights to optimize your posting strategy." />
         <meta property="og:image" content="https://postrack.ai/og-image-homepage.webp" /> 
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Postrack - AI Copilot & Analytics for X" />
+        <meta property="og:site_name" content="Postrack - AI Copilot & Analytics for Twitter" />
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary_larger_image" />  
-        <meta name="twitter:title" content="Postrack: AI Copilot & Analytics for X" />
-        <meta name="twitter:description" content="Unlock viral growth on X with AI content tools and deep analytics." />
+        <meta name="twitter:title" content="Postrack: AI Copilot & Analytics for Twitter" />
+        <meta name="twitter:description" content="Unlock viral growth on Twitter with AI content tools and deep analytics." />
         <meta name="twitter:image" content="https://postrack.ai/og-image-homepage.webp" />
       </Head>
       

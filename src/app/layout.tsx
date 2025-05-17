@@ -45,7 +45,7 @@ const softwareSchema = {
     "priceCurrency": "USD",
     "url": "https://postrack.ai/#pricing"
   },
-  "description": "AI Copilot and Analytics for X. Track engagement, analyze competitors, and generate viral-ready content.",
+  "description": "AI Copilot and Analytics for Twitter. Track engagement, analyze competitors, and generate viral-ready content.",
   "url": "https://postrack.ai",
   "potentialAction": {
         "@type": "Action",
@@ -58,27 +58,27 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://postrack.ai"), // Update with your actual domain
   title: {
     template: "%s | Postrack",
-    default: "Postrack: Optimize X Engagement",
+    default: "Postrack: Optimize Twitter Engagement",
   },
-  description: "Track any account or post on X. Postrack analyzes successful accounts and reverse-engineers viral posts to help you optimize your X content strategy.",
+  description: "Track any account or post on Twitter. Postrack analyzes successful accounts and reverse-engineers viral posts to help you optimize your Twitter content strategy.",
   keywords: [
-    "X analytics",
-    "AI for X",
-    "X tracking tool",
-    "first hour analytics X",
-    "X competitor analysis",
-    "viral post tracking X",
-    "X growth tool",
-    "AI content generation X",
-    "X performance metrics",
+    "Twitter analytics",
+    "AI for Twitter",
+    "Twitter tracking tool",
+    "first hour analytics Twitter",
+    "Twitter competitor analysis",
+    "viral post tracking Twitter",
+    "Twitter growth tool",
+    "AI content generation Twitter",
+    "Twitter performance metrics",
     "Twitter analytics", // Keep for search volume
-    "X engagement tracking",
-    "golden hour tracking X",
-    "understand X algorithm",
-    "X AI copilot",
-    "reverse engineer X success",
-    "X content strategy tool",
-    "improve X posts"
+    "Twitter engagement tracking",
+    "golden hour tracking Twitter",
+    "understand Twitter algorithm",
+    "Twitter AI copilot",
+    "reverse engineer Twitter success",
+    "Twitter content strategy tool",
+    "improve Twitter posts"
   ],
   authors: [{ name: "Postrack Team" }],
   creator: "Postrack",
@@ -90,15 +90,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://postrack.ai",
-    title: "Postrack: Optimize X Engagement",
-    description: "Track any account or post on X. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
+    title: "Postrack: Optimize Twitter Engagement",
+    description: "Track any account or post on Twitter. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
     siteName: "Postrack",
     images: [
       {
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: "Postrack - X Analytics Tool"
+        alt: "Postrack - Twitter Analytics Tool"
       }
     ]
   },
@@ -106,9 +106,9 @@ export const metadata: Metadata = {
   // Twitter card metadata
   twitter: {
     card: "summary_large_image",
-    title: "Postrack: Optimize X Engagement",
-    description: "Track any account or post on X. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
-    creator: "@postrack", // Update with your actual X handle
+    title: "Postrack: Optimize Twitter Engagement",
+    description: "Track any account or post on Twitter. Postrack helps you analyze successful accounts and reverse-engineer viral posts.",
+    creator: "@postrack", // Update with your actual Twitter handle
     images: [ogImageUrl],
   },
   

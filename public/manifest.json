@@ -1,7 +1,7 @@
 {
-    "name": "Postrack - Optimize X Engagement",
+    "name": "Postrack - AI Original Posting for Twitter",
     "short_name": "Postrack",
-    "description": "Track any account or post on X to analyze and optimize your social media strategy",
+    "description": "AI-powered posting and competitor analysis for Twitter",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",

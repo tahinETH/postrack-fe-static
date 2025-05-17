@@ -43,7 +43,7 @@ export default function CTASection() {
             </h2>
             
             <p className="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Postrack gives you the tools to dominate X's golden hour and exploit long-tail engagement. Stop leaving virality to chance.
+              Postrack gives you the tools to dominate Twitter's golden hour and exploit long-tail engagement. Stop leaving virality to chance.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

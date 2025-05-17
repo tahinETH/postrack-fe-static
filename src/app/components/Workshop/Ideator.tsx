@@ -99,7 +99,7 @@ export default function Ideator() {
               <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700">
                 <Image 
                   src="https://postrack.s3.eu-central-003.backblazeb2.com/levelsio.jpg" 
-                  alt="Pieter Levels Profile Picture on X" 
+                  alt="Pieter Levels Profile Picture on Twitter" 
                   width={40}
                   height={40}
                   className="object-cover"
